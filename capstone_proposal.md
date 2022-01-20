@@ -1,7 +1,7 @@
 # **Project Overview**
-## - keep a record of all the books in the library books issued/returned by students and calculate fines
-## - manage the information related to the library members, students, books, addresses
-## - I will use django and try to implement vue also
+## - keep a record of all the books in the library books issued/returned by students and calculate fines.
+## - manage the information related to the library members, students, books, addresses.
+## - I will use django and try to implement vue also.
 ## - For now the only library that I will use is [django-haystack](https://github.com/django-haystack/django-haystack) which will help with spelling suggestions for user search queries. 
 
 
@@ -26,7 +26,7 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-class book(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=50)
     price = models.DecimalField(decimal_places=2, max_digits=10)
     description = models.CharField(max_length=1000)
