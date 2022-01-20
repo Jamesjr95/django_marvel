@@ -67,7 +67,7 @@ class Checkout(models.Model):
   - Find a library api to pull book data from.
 - Milestone 2(2nd week)
   - Start thinking about my views and the general layout of the site.
-  - Create very barebones templates to render all the data.
+  - Create very templates and CRUD to render all the data.
 - Milestone 3(3rd & 4th week)
   - add a way to purchase and checkout book
   - add user avatar
