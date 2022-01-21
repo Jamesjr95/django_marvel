@@ -12,7 +12,7 @@
 
 # **Data Model**
 
-![Diagram of models](https://github.com/Jamesjr95/Capstone_proj/blob/main/image.png)
+![Diagram of models](https://github.com/Jamesjr95/Capstone_proj/blob/main/capstone_diagram.PNG)
 
 ## User table
 - avatar
