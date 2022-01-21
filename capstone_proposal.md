@@ -13,57 +13,43 @@
 # **Data Model**
 
 ![Diagram of models](https://github.com/Jamesjr95/Capstone_proj/blob/main/image.png)
-```
 
+## User table
+- avatar,
+- phone number,
+- address
 
-def get_upload_path(instance, filename):
-    return f'images/avatars/{filename}'
+## Category table
+- title
 
-class User(AbstractUser):
-    avatar = models.ImageField(upload_to=get_upload_path, default='images/avatars/default_avatar.jpg')
-    phone_number = models.CharField(max_length=20)
-    address = models.CharField(max_length=300)
+## Book table
+- title,
+- price,
+- description,
+- image,
+- rating,
+- stock, 
+- likes,
+  - many to many relationship to the User table
+- categories
+  - many to many relationship with Category table
 
-class Category(models.Model):
-    title = models.CharField(max_length=100)
+## Author table
+- name,
+- books
+  - many to many relationship with Book table
 
-    def __str__(self):
-        return self.title
+## Checkout Item table
+- checkout,
+  - foreignkey relationship to Checkout table
+- book
+  - foreignkey to Book table
 
-class Book(models.Model):
-    title = models.CharField(max_length=50)
-    price = models.DecimalField(decimal_places=2, max_digits=10)
-    description = models.CharField(max_length=1000)
-    image_url = models.CharField(max_length=200)
-    rating = models.FloatField(default=0.0)
-    stock = models.PositiveIntegerField(default=random.randint(10,20))
-    likes = models.ManyToManyField(get_user_model(), related_name='users', blank=True)
-
-    categories = models.ManyToManyField(Category, related_name='books')
-
-    def __str__(self):
-        return f"{self.title}"
-
-class Author(models.Model):
-    name = models.CharField(max_length=200)
-    books = models.ManyToManyField(Book, related_name='authors')
-
-
-
-class CheckoutItem(models.Model):
-    checkout = models.ForeignKey('Checkout', on_delete=models.CASCADE, related_name='checkout_items')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='checkout_items')
-    quantity = models.PositiveIntegerField(default=0)
-
-
-
-class Checkout(models.Model):
-    owner = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name='checkout')
-    books = models.ManyToManyField(Book, through=CheckoutItem, related_name='user_checkout', blank=True)
-
-    def __str__(self):
-        return f"{self.owner}"
-```
+## Checkout table
+- owner,
+  - one to one relationship to User table
+- books,
+  - many to many relationship with Book table
 
 #  **Schedule**
 - Milestone 1(1st week)
