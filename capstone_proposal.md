@@ -11,7 +11,11 @@
 
 
 # **Data Model**
+
+![Diagram of models](https://github.com/Jamesjr95/Capstone_proj/blob/main/image.png)
 ```
+
+
 def get_upload_path(instance, filename):
     return f'images/avatars/{filename}'
 
