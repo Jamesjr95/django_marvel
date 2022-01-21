@@ -15,40 +15,40 @@
 ![Diagram of models](https://github.com/Jamesjr95/Capstone_proj/blob/main/image.png)
 
 ## User table
-- avatar,
-- phone number,
+- avatar
+- phone number
 - address
 
 ## Category table
 - title
 
 ## Book table
-- title,
-- price,
-- description,
-- image,
-- rating,
-- stock, 
-- likes,
+- title
+- price
+- description
+- image
+- rating
+- stock 
+- likes
   - many to many relationship to the User table
 - categories
   - many to many relationship with Category table
 
 ## Author table
-- name,
+- name
 - books
   - many to many relationship with Book table
 
 ## Checkout Item table
-- checkout,
+- checkout
   - foreignkey relationship to Checkout table
 - book
   - foreignkey to Book table
 
 ## Checkout table
-- owner,
+- owner
   - one to one relationship to User table
-- books,
+- books
   - many to many relationship with Book table
 
 #  **Schedule**
