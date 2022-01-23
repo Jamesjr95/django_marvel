@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-    {% for book in book %}
-    <div class="card m-2" style="width: 18rem;">
-        <img src="{{book.image_url}}" class="card-img-top" alt="...">
+<div class="row row-cols-1 row-cols-md-3 g-4">
+{% for book in book %}
+    <div class="card m-2 h-20" style="width: 18rem;">
+        <img src="{{book.image_url}}" class="card-img-top py-2" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{book.title}}</h5>
           <p class="card-text">{{book.description}}</p>
           <a href="#" class="btn btn-primary">Checkout</a>
         </div>
       </div>
-    {% endfor %}
+    {% endfor %}</div>
 {% endblock content %}
