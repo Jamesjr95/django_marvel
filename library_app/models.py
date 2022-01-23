@@ -17,14 +17,13 @@ class Category(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=50)
     # price = models.DecimalField(decimal_places=2, max_digits=10)
-    description = models.CharField(max_length=1000)
+    description = models.CharField(max_length=1000, null=True, blank=True)
     image_url = models.CharField(max_length=200)
-    # rating = models.FloatField(default=0.0)
+    # rating = models.PositiveIntegerField(default=random.randint(1,5))
     stock = models.PositiveIntegerField(default=random.randint(1,5))
     likes = models.ManyToManyField(get_user_model(), related_name='users', blank=True)
-
-    categories = models.ManyToManyField(Category, related_name='books')
-
+    category = models.ManyToManyField(Category, related_name='books')
+    
     def __str__(self):
         return f"{self.title}"
 
@@ -32,6 +31,8 @@ class Author(models.Model):
     name = models.CharField(max_length=200)
     books = models.ManyToManyField(Book, related_name='authors')
 
+    def __str__(self):
+        return f"{self.name}"
 
 
 class CheckoutItem(models.Model):

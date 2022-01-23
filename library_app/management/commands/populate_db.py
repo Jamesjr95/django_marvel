@@ -1,48 +1,74 @@
 from django.core.management.base import BaseCommand
-import requests
+import requests, json
+
 
 from library_app.models import Book, Category, Author
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
 
+        Book.objects.all().delete()
+        Category.objects.all().delete()
+        Author.objects.all().delete()
+        test = f'https://covers.openlibrary.org/b/$dracula/$value-$size.jpg'
+        # image_query = requests.get(test)
+        # img = image_query.json()#.get('query')
+        print(test)
+        
+        
+        # def query(title):
+        #     if '; ' in title:
+        #         summary = title.split('; ')[0]
+        #         # print(summary)
+        #         url2 = f"https://en.wikipedia.org/api/rest_v1/page/summary/{summary}"
+        #         response2 = requests.get(url2)
+        #         summary = response2.json().get('extract')
+        #     elif ' ' or ',' or '-' in title:
+        #         summary = title.replace(' ', '_').replace(',', '').replace('-', '')
+        #         # print(summary)
+        #         url2 = f"https://en.wikipedia.org/api/rest_v1/page/summary/{summary}"
+        #         response2 = requests.get(url2)
+        #         summary = response2.json().get('extract')
+        #     return summary
 
-        url = "https://gnikdroy.pythonanywhere.com/api/book/?format=json"
-        response = requests.get(url)
-        # print this to see whole dictionary with all fields
-        books = response.json() 
-        
-        # url2 = f"https://en.wikipedia.org/api/rest_v1/page/summary/Frankenstein"
-        # url2 = f"https://en.wikipedia.org/api/rest_v1/page/summary/{title}"
-        # response2 = requests.get(url2)
-        # summary = response2.json().get('extract')
-        # print(summary)
+        # def category_query(category):
+        #     if '--' in category:
+        #         category = category.replace('--', '')
+        #     else:
+        #         category = category
+        #     return category
         
         
-        def query(title):
-            if '; ' in title:
-                summary = title.split('; ')[0]
-                url2 = f"https://en.wikipedia.org/api/rest_v1/page/summary/{summary}"
-                response2 = requests.get(url2)
-                summary = response2.json().get('extract')
-                print(summary)
-            else:
-                summary = title.replace(' ', '_')
-                url2 = f"https://en.wikipedia.org/api/rest_v1/page/summary/{summary}"
-                response2 = requests.get(url2)
-                summary = response2.json().get('extract')
-                print(summary)
-            return summary
+        # loop = 1
         
-        
-        
-        books = books['results']
-        # search = books['title']
-        
-        for book in books[0:5]:
-            title = book['title']
-            image_url = book['resources'][2]['uri']
-            categories = book['subjects']
-            description = query(title)
-        print(description)
-        
+        # while loop < 2:
+        #     loop_str = str(loop)
+        #     url = f"https://gnikdroy.pythonanywhere.com/api/book/?format=json&page={loop_str}"
+        #     response = requests.get(url)
+        #     books = response.json().get('results')
+            
+        #     for book in books:
+        #         title = book['title']
+        #         image_url = book['resources'][3]['uri']
+        #         category = book['subjects']
+        #         description = query(title)
+        #         author = book['agents'][0]['person']
+        #         # print(title)
+                
+
+                
+        #         book = Book.objects.create(
+        #             title = title,
+        #             image_url = image_url,
+        #             description = description,
+                    
+        #         )
+
+        #         author, created = Author.objects.get_or_create(name=author)
+        #         author.books.add(book)
+                
+        #         for category in map(str, category):
+        #             category = category_query(category)
+        #             category, created = Category.objects.get_or_create(title=category)
+        #             book.category.add(category)
+        #     loop += 1
