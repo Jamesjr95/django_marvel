@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 import requests, json
 
-
+'''make for loop for 'agents' which are the authors because there can be multiple authors'''
 
 from library_app.models import Book, Category, Author
 
@@ -44,9 +44,14 @@ class Command(BaseCommand):
             for data in image_url:
                 if '.cover.medium.jpg' in data['uri']:
                     image_url = data['uri']
-                    print(image_url)
             return image_url
-        
+
+        def author_search(author):
+            index = 0
+            if author[0]['type'] == 'Author':
+                author = author[0]['person']
+            index += 1
+            return author
         loop = 1
         
         while loop < 2:
@@ -62,8 +67,9 @@ class Command(BaseCommand):
                 image_url = image_search(image_url)
                 category = book['subjects']
                 description = query(title)
-                author = book['agents'][0]['person']
-                print(type(image_url[0]))
+                author = book['agents']
+                author = author_search(author)
+                print(author)
                 
 
                 

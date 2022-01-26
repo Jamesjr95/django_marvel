@@ -14,6 +14,10 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+# add a system of holds to the model for the book (many to many to Users),
+# keep track of which user has a book on hold
+
+# add library cards model if you finish early
 class Book(models.Model):
     title = models.CharField(max_length=50)
     # price = models.DecimalField(decimal_places=2, max_digits=10)
