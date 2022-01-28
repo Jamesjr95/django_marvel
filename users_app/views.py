@@ -12,6 +12,7 @@ from django.contrib.auth import (
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserForm, UserAuthForm
+from library_app.models import Checkout
 
 def register(request):
 
@@ -52,3 +53,40 @@ def register(request):
 
             return render(request, 'users/register.html', context)
 
+def login(request):
+    if request.method == 'GET':
+
+        form = UserAuthForm()
+        return render(request, 'users/login.html', {'form': form})
+
+    elif request.method == 'POST':
+
+        form = request.POST
+        username = form['username']
+        password = form['password']
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is None:
+            context = {
+                'form': UserAuthForm(),
+                'errors': ['Invalid Username or Password']
+            }
+
+            return render(request, 'users/login.html', context)
+
+
+        else:
+            django_login(request, user)
+            return redirect(reverse('users_app:profile', kwargs={'username': user.username}))
+
+def profile(request, username):
+    user = get_object_or_404(get_user_model(), username=username)
+    return render(request, 'users/profile.html', {'user': user})
+    
+
+
+def logout(request):
+    django_logout(request)
+
+    return redirect(reverse('users_app:login'))

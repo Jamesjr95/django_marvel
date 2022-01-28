@@ -11,6 +11,10 @@ def get_upload_path(instance, filename):
 class Category(models.Model):
     title = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name = ('Category')
+        verbose_name_plural = ('Categories')
+
     def __str__(self):
         return self.title
 
@@ -49,6 +53,10 @@ class CheckoutItem(models.Model):
 class Checkout(models.Model):
     owner = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name='checkout')
     books = models.ManyToManyField(Book, through=CheckoutItem, related_name='user_checkout', blank=True)
-
+        
+    class Meta:    
+        verbose_name = ('Checkout')
+        verbose_name_plural = ('Checkout')
+    
     def __str__(self):
         return f"{self.owner}"
