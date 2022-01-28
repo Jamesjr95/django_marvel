@@ -38,10 +38,10 @@ def register(request):
             # validated form data is in form.cleaned_data
             new_user.set_password(form.cleaned_data['password'])
 
-
             # save the object to the database
             new_user.save()
 
+            checkout = Checkout.objects.create(owner=new_user)
             # redirect() does the same thing as HttpResponseRedirect
             return redirect(reverse('users_app:register'))
 

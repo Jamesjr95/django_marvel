@@ -48,6 +48,10 @@ class CheckoutItem(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='checkout_items')
     quantity = models.PositiveIntegerField(default=0)
 
+    def __str__(self):
+        return f'{self.quantity} {self.book}'
+
+
 
 
 class Checkout(models.Model):
@@ -59,4 +63,4 @@ class Checkout(models.Model):
         verbose_name_plural = ('Checkout')
     
     def __str__(self):
-        return f"{self.owner}"
+        return f"{self.owner}'s cart"

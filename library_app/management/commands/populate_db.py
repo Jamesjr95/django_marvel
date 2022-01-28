@@ -43,6 +43,8 @@ class Command(BaseCommand):
             else:
                 category = category
             return category
+        # wikipedia api to get a pages image data
+            # image_url = f'https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&explaintext=false&exintro&titles=Kobe+Bryant'
 
         def image_search(image_url):
             for data in image_url:
