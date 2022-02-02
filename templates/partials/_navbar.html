@@ -1,13 +1,19 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'library_app:index' %}">Library</a>
+      <a class="navbar-brand" href="{% url 'library_app:index' %}"><i class="fas fa-home"></i></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-end">
             {% if request.user.is_authenticated %}
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <i class="fas fa-search bg-white my-auto mr-0"></i>
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </form>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Checkout</a>
             </li>
@@ -15,7 +21,7 @@
               <a class="nav-link" href="{% url 'users_app:logout' %}">Logout</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'users_app:profile' user.username %}">Account</a>
+              <a class="nav-link" href="{% url 'users_app:profile' user.username %}">{{user.username}}'s Account</a>
             </li>
             {% else %}
                     

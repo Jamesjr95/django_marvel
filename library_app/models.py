@@ -4,6 +4,7 @@ import random
 
 # Create your models here.
 
+
 def get_upload_path(instance, filename):
     return f'images/avatars/{filename}'
 
@@ -22,18 +23,21 @@ class Category(models.Model):
 # keep track of which user has a book on hold
 
 # add library cards model if you finish early
+
+
 class Book(models.Model):
     title = models.CharField(max_length=50)
     # price = models.DecimalField(decimal_places=2, max_digits=10)
     description = models.CharField(max_length=1000, null=True, blank=True)
     image_url = models.CharField(max_length=200)
-    # rating = models.PositiveIntegerField(default=random.randint(1,5))
-    stock = models.PositiveIntegerField(default=random.randint(1,5))
-    likes = models.ManyToManyField(get_user_model(), related_name='users', blank=True)
+    stock = models.PositiveIntegerField(default=random.randint(1, 5))
+    likes = models.ManyToManyField(
+        get_user_model(), related_name='users', blank=True)
     category = models.ManyToManyField(Category, related_name='books')
-    
+
     def __str__(self):
         return f"{self.title}"
+
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
@@ -44,23 +48,25 @@ class Author(models.Model):
 
 
 class CheckoutItem(models.Model):
-    checkout = models.ForeignKey('Checkout', on_delete=models.CASCADE, related_name='checkout_items')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='checkout_items')
+    checkout = models.ForeignKey(
+        'Checkout', on_delete=models.CASCADE, related_name='checkout_items')
+    book = models.ForeignKey(
+        Book, on_delete=models.CASCADE, related_name='checkout_items')
     quantity = models.PositiveIntegerField(default=0)
+    due_date = models.DateField(auto_now=True)
 
     def __str__(self):
         return f'{self.quantity} {self.book}'
 
-
-
-
 class Checkout(models.Model):
-    owner = models.OneToOneField(get_user_model(), on_delete=models.CASCADE, related_name='checkout')
-    books = models.ManyToManyField(Book, through=CheckoutItem, related_name='user_checkout', blank=True)
-        
-    class Meta:    
+    owner = models.OneToOneField(
+        get_user_model(), on_delete=models.CASCADE, related_name='checkout')
+    books = models.ManyToManyField(
+        Book, through=CheckoutItem, related_name='user_checkout', blank=True)
+
+    class Meta:
         verbose_name = ('Checkout')
         verbose_name_plural = ('Checkout')
-    
+
     def __str__(self):
         return f"{self.owner}'s cart"

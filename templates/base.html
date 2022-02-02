@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 
     <script
       src="https://kit.fontawesome.com/7e23fc28a2.js"
@@ -25,20 +25,18 @@
       crossorigin="anonymous"
     ></script>
 
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
     <title>Library Project</title>
   </head>
 
   <body>
     {% include 'partials/_navbar.html' %}
     <main class="container">
-      <div class="row d-flex">
-          
-        {% block content %} 
-          
-        
-        {% endblock content %}
-    
-    </div>
+      <div class="row d-flex">{% block content %} {% endblock content %}</div>
     </main>
+    
+    <script src="../static/index.js"></script>
+    
   </body>
 </html>
