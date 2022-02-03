@@ -10,16 +10,16 @@ def index(request):
     category_options = {
         'categories': [category.title for category in Category.objects.all()]
     }
-
-    psychological = books.filter(category__title__icontains='Psychological')
-    historical = books.filter(category__title__icontains='historical')
-    politics = books.filter(category__title__icontains='political')
-    poetry = books.filter(category__title__icontains='poetry')
-    comedy = books.filter(category__title__icontains='Humorous')
-    drama = books.filter(category__title__icontains='drama')
-    
-    # ['psychological', 'historical', 'political', 'poetry']
-    
+    def filter_list(category):
+        return list(dict.fromkeys(category))
+    book_category = Category.objects.all()
+    psychological = filter_list(books.filter(category__title__icontains='Psychological'))
+    historical = filter_list(books.filter(category__title__icontains='historical'))
+    politics = filter_list(books.filter(category__title__icontains='political'))
+    poetry = filter_list(books.filter(category__title__icontains='poetry'))
+    comedy = filter_list(books.filter(category__title__icontains='Humorous'))
+    drama = filter_list(books.filter(category__title__icontains='drama'))
+   
     context = {
         'category_options': category_options,
         'books': books,
@@ -30,10 +30,12 @@ def index(request):
         'comedy': comedy,
         'drama': drama,
     }
+
+
     if 'error' in request.session:
         context['error'] = request.session['error']
         del request.session['error']
-    
+    print(type(drama))
 
     return render(request, 'catalog/index.html', context)
 

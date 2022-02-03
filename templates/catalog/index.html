@@ -20,93 +20,68 @@
       /></a> -->
     <!-- </div> -->
     <!-- {% endfor %} -->
-<!-- </div> -->
-<!-- </div> -->
-<div class="container">
-	<div class="row">
-    <h1>Psychological</h1>
-		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-              {% for book in psychological %}
-                <div class="item">
-                  <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+    <div class="container">
+      <div class="row">
+        <h1>Drama</h1>
+        <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+                <div class="MultiCarousel-inner">
+                  {% for book in drama %}
+                  <div class="item">
+                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                  </div>
+                  {% endfor %}
                 </div>
-                {% endfor %}
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
             </div>
-            <button class="btn btn-primary leftLst"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn btn-primary rightLst"><i class="fas fa-chevron-right"></i></button>
-        </div>
-	</div>
-	<div class="row">
-    <h1>History</h1>
-		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-              {% for book in historical %}
-                <div class="item">
-                  <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+      </div>
+      <div class="container">
+      <div class="row">
+        <h1>Historical</h1>
+        <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+                <div class="MultiCarousel-inner">
+                  {% for book in historical %}
+                  <div class="item">
+                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                  </div>
+                  {% endfor %}
                 </div>
-                {% endfor %}
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
             </div>
-            <button class="btn btn-primary leftLst"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn btn-primary rightLst"><i class="fas fa-chevron-right"></i></button>
-        </div>
-	</div>
-	<div class="row">
-    <h1>Politics</h1>
-		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-              {% for book in politics %}
-                <div class="item">
-                  <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+      </div>
+    </div>
+      <div class="container">
+      <div class="row">
+        <h1>Psychological</h1>
+        <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+                <div class="MultiCarousel-inner">
+                  {% for book in psychological %}
+                  <div class="item">
+                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                  </div>
+                  {% endfor %}
                 </div>
-                {% endfor %}
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
             </div>
-            <button class="btn btn-primary leftLst"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn btn-primary rightLst"><i class="fas fa-chevron-right"></i></button>
-        </div>
-	</div>
-	<div class="row">
-    <h1>Poetry</h1>
-		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-              {% for book in poetry %}
-                <div class="item">
-                  <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+      </div>
+    </div>
+      <div class="container">
+      <div class="row">
+        <h1>Politics</h1>
+        <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
+                <div class="MultiCarousel-inner">
+                  {% for book in politics %}
+                  <div class="item">
+                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                  </div>
+                  {% endfor %}
                 </div>
-                {% endfor %}
+                <button class="btn btn-primary leftLst"><</button>
+                <button class="btn btn-primary rightLst">></button>
             </div>
-            <button class="btn btn-primary leftLst"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn btn-primary rightLst"><i class="fas fa-chevron-right"></i></button>
-        </div>
-	</div>
-	<div class="row">
-    <h1>Comedy</h1>
-		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-              {% for book in comedy %}
-                <div class="item">
-                  <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
-                </div>
-                {% endfor %}
-            </div>
-            <button class="btn btn-primary leftLst"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn btn-primary rightLst"><i class="fas fa-chevron-right"></i></button>
-        </div>
-	</div>
-	<div class="row">
-    <h1>Drama</h1>
-		<div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel"  data-interval="1000">
-            <div class="MultiCarousel-inner">
-              {% for book in drama %}
-                <div class="item">
-                  <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
-                </div>
-                {% endfor %}
-            </div>
-            <button class="btn btn-primary leftLst"><i class="fas fa-chevron-left"></i></button>
-            <button class="btn btn-primary rightLst"><i class="fas fa-chevron-right"></i></button>
-        </div>
-	</div>
+      </div>
+    </div>
 </div>
-
 {% endblock content %}

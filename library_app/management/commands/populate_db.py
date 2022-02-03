@@ -57,16 +57,18 @@ class Command(BaseCommand):
             return image_url
 
         def author_search(author):
-            index = 0
+            # index = 0
             if author[0]['type'] == 'Author':
                 author = author[0]['person']
-            index += 1
+            # index += 1
+            else:
+                author = 'none'
             return author
 
         
         loop = 1
 
-        while loop < 10:
+        while loop < 13:
             loop_str = str(loop)
             url = f"https://gnikdroy.pythonanywhere.com/api/book/?format=json&page={loop_str}"
             response = requests.get(url)
