@@ -60,9 +60,8 @@ def add_to_cart(request, book_id):
 def detail(request, book_id):
 
     book = get_object_or_404(Book, id=book_id),
-    author = get_object_or_404(Author, id=book_id)
     context = {
         'book': book,
-        'author': author
+        # 'author': author
     }
     return render(request, 'catalog/details.html', context)
