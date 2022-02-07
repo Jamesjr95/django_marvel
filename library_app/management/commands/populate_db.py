@@ -58,11 +58,11 @@ class Command(BaseCommand):
 
         def author_search(author):
             # index = 0
-            if author[0]['type'] == 'Author':
+            if author == []:
+                author = 'none'
+            elif author[0]['type'] == 'Author':
                 author = author[0]['person']
             # index += 1
-            else:
-                author = 'none'
             return author
 
         

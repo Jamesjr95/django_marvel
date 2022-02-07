@@ -35,7 +35,6 @@ def index(request):
     if 'error' in request.session:
         context['error'] = request.session['error']
         del request.session['error']
-    print(type(drama))
 
     return render(request, 'catalog/index.html', context)
 
@@ -57,3 +56,13 @@ def add_to_cart(request, book_id):
      
 
     return redirect('library_app:index')
+
+def detail(request, book_id):
+
+    book = get_object_or_404(Book, id=book_id),
+    author = get_object_or_404(Author, id=book_id)
+    context = {
+        'book': book,
+        'author': author
+    }
+    return render(request, 'catalog/details.html', context)

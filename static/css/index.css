@@ -43,3 +43,12 @@
   pointer-events: none;
   background: #ccc;
 }
+
+.nav-link{
+  color: white;
+  text-decoration: none;
+  list-style-type: none;
+}
+.nav-item{
+  list-style-type: none;
+}

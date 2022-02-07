@@ -1,25 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block content %} {% if error %}
 {{error}} {% endif %}
-<!-- <div
-  class="row row-cols-1 row-cols-md-3 row-cols-lg-6 g-4 justify-content-center"
-> -->
-
-  <!-- {% for book in books %}
-  <div><img
-    src="{{book.image_url}}"
-    class=""
-    alt="image {{forloop.counter}}" -->
-  <!-- /> -->
-  <!-- <a href="{ url 'library_app:details' }" class="" 
-      > -->
-  <!-- <img
-      src="{{book.image_url}}"
-      class=""
-      style="height: 13rem; width: 9rem"
-      alt="..."
-      /></a> -->
-    <!-- </div> -->
-    <!-- {% endfor %} -->
     <div class="container">
       <div class="row">
         <h1>Drama</h1>
@@ -27,7 +7,7 @@
                 <div class="MultiCarousel-inner">
                   {% for book in drama %}
                   <div class="item">
-                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                    <a href="{% url 'library_app:detail' book.id %}"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
                   </div>
                   {% endfor %}
                 </div>
@@ -42,7 +22,7 @@
                 <div class="MultiCarousel-inner">
                   {% for book in historical %}
                   <div class="item">
-                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                    <a href="{% url 'library_app:detail' book.id %}"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
                   </div>
                   {% endfor %}
                 </div>
@@ -58,7 +38,7 @@
                 <div class="MultiCarousel-inner">
                   {% for book in psychological %}
                   <div class="item">
-                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                    <a href="{% url 'library_app:detail' book.id %}"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
                   </div>
                   {% endfor %}
                 </div>
@@ -74,7 +54,7 @@
                 <div class="MultiCarousel-inner">
                   {% for book in politics %}
                   <div class="item">
-                    <a href="{ url 'library_app:details' }"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
+                    <a href="{% url 'library_app:detail' book.id %}"><img src="{{book.image_url}}" style="height: 13rem; width: 9rem" alt=""></a>
                   </div>
                   {% endfor %}
                 </div>

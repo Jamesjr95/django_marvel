@@ -1,17 +1,17 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid my-auto">
       <a class="navbar-brand" href="{% url 'library_app:index' %}"><i class="fas fa-home"></i></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-end">
+        <ul class="navbar-nav w-100 justify-content-end my-auto">
             {% if request.user.is_authenticated %}
             <form class="d-flex">
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <span class="input-group-text bg-light" id="basic-addon2"><button type="button" class="btn btn-light"><i class="fas fa-search"></i></button></span>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                <span class="input-group-text bg-light" id="basic-addon2"><button type="button" class="btn"><i class="fas fa-search"></i></button></span>
               </div>
           </form>
           </div>
