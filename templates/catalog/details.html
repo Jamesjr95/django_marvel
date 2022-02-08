@@ -5,18 +5,18 @@
 <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="{{book.image_url}}" class="img-fluid rounded-start" style="height: 13rem; width: 9rem" alt="...">
+      <img src="{{books.image_url}}" class="img-fluid rounded-start" style="height: 13rem; width: 9rem" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{book.title}}</h5>
-        <p class="card-text">{{book.author.name}}</p>
-        <p class="card-text">{{book.description|truncatewords:30}}</p>
+        <h5 class="card-title">{{books.title}}</h5>
+        <p class="card-text">{{author}}</p>
+        <p class="card-text">{{books.description|truncatewords:30}}</p>
       </div>
     </div>
   </div>
   <div class="card-footer bg-secondary d-flex justify-content-end">
-    <i class="fas fa-cart-plus"></i> 
+    <a href="{% url 'library_app:add_to_cart' book.id %}"></a><i class="fas fa-cart-plus"></i> 
    </div>
 </div>
 </div>

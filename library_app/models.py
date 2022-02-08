@@ -34,10 +34,8 @@ class Book(models.Model):
     likes = models.ManyToManyField(
         get_user_model(), related_name='users', blank=True)
     category = models.ManyToManyField(Category, related_name='books')
-
     def __str__(self):
         return f"{self.title}"
-
 
 class Author(models.Model):
     name = models.CharField(max_length=200)
@@ -45,6 +43,7 @@ class Author(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
 
 
 class CheckoutItem(models.Model):

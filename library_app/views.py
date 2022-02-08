@@ -59,9 +59,13 @@ def add_to_cart(request, book_id):
 
 def detail(request, book_id):
 
-    book = get_object_or_404(Book, id=book_id),
+    books = get_object_or_404(Book, id=book_id)
+    author = Author.objects.filter(books=books)[0]
+
+    # author = get_object_or_404(Author, name=name)
     context = {
-        'book': book,
-        # 'author': author
+        'books': books,
+        'author': author,
     }
+    print(author)
     return render(request, 'catalog/details.html', context)
