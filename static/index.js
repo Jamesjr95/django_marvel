@@ -1,3 +1,17 @@
+let animate_item = document.querySelector('.animate_img')
+
+
+// animate_item.addEventListener('mouseenter', (event)=>{
+//     console.log(event.target);
+//     event.target.classList.add(
+//         'animate__animated', 'animate__zoomIn')
+// })
+
+// animate_item.addEventListener('mouseleave', (event)=>{
+//     event.target.classList.remove(
+//         'animate__animated', 'animate__zoomIn')
+// })
+
 $(document).ready(function () {
     var itemsMainDiv = ('.MultiCarousel');
     var itemsDiv = ('.MultiCarousel-inner');
@@ -104,3 +118,4 @@ $(document).ready(function () {
     }
 
 });
+
