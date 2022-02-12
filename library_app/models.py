@@ -1,6 +1,9 @@
+from cgitb import text
 from django.db import models
 from django.contrib.auth import get_user_model
 import random
+
+from django.forms import Textarea
 
 # Create your models here.
 
@@ -24,11 +27,10 @@ class Category(models.Model):
 
 # add library cards model if you finish early
 
-
 class Book(models.Model):
     title = models.CharField(max_length=50)
     # price = models.DecimalField(decimal_places=2, max_digits=10)
-    description = models.CharField(max_length=1000, null=True, blank=True)
+    description = models.CharField(max_length=2000, null=True, blank=True)
     image_url = models.CharField(max_length=200)
     stock = models.PositiveIntegerField(default=random.randint(1, 5))
     likes = models.ManyToManyField(
@@ -37,7 +39,14 @@ class Book(models.Model):
     def __str__(self):
         return f"{self.title}"
 
+class Character(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.CharField(max_length=2000)
+    image = models.CharField(max_length=500)
+    books = models.ManyToManyField(Book, related_name='characters')
+
 class Author(models.Model):
+    role = models.CharField(max_length=200, blank=True, null=True)
     name = models.CharField(max_length=200)
     books = models.ManyToManyField(Book, related_name='authors')
 
