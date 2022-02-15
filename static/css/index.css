@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 * {
-  font-family: "Playfair Display", serif;
-  font-weight: 100;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
 }
 
 
@@ -12,11 +12,29 @@ box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 
 
 .detail_image img{
-  
     vertical-align: middle;
     border-style: none;
     width: 100%;
     height: auto;
-    max-width: 828px;
 
+}
+
+.img_hover{
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+.img_hover:hover {
+  top: -10px;
+}
+
+.book_title{
+  font-size: .8rem;
+}
+
+
+.carousel-item img{
+  object-fit: contain;
+  width: 50px;
+  height: 100px;
 }
