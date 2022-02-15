@@ -28,33 +28,22 @@ def index(request):
     book_category = Category.objects.all()
     psychological = filter_list(books.filter(
         category__title__icontains='Psychological'))
-    historical = filter_list(books.filter(
-        category__title__icontains='historical'))
-    politics = filter_list(books.filter(
-        category__title__icontains='political'))
-    poetry = filter_list(books.filter(category__title__icontains='poetry'))
-    comedy = filter_list(books.filter(category__title__icontains='Humorous'))
-    drama = filter_list(books.filter(category__title__icontains='drama'))
+    
 
     context = {
         'category_options': category_options,
         'author_name': '',
         'books': books,
-        'psychological': psychological,
-        'historical': historical,
-        'politics': politics,
-        'poetry': poetry,
-        'comedy': comedy,
-        'drama': drama,
+       
     }
 
     if 'error' in request.session:
         context['error'] = request.session['error']
         del request.session['error']
     
-    # if 'late_message' in request.session:
-    #     context['late_message'] = request.session['late_message']
-    #     del request.session['late_message']
+    if 'late_message' in request.session:
+        context['late_message'] = request.session['late_message']
+        del request.session['late_message']
     
     return render(request, 'catalog/index.html', context)
 
@@ -70,10 +59,10 @@ def add_to_cart(request, book_id):
     due_date = today + timezone.timedelta(minutes=1)
     print(today_time)
     
-    # if due_date >= today:
-    #     request.session['late_message'] = 'You have books that are overdue'
+    if due_date >= today:
+        request.session['late_message'] = 'You have books that are overdue'
         
-    if not checkout_i.filter(checkout=checkout, book_id=book_id).exists():
+    elif not checkout_i.filter(checkout=checkout, book_id=book_id).exists():
         checkout_item, created = CheckoutItem.objects.get_or_create(
             book=book, checkout=checkout)
 
@@ -81,7 +70,7 @@ def add_to_cart(request, book_id):
         checkout_item.due_date = due_date
         checkout_item.save()
     else:
-        request.session['error'] = 'Can only checkout one of each book'
+        request.session['error'] = 'Can only checkout one of each comic'
 
     return redirect(reverse('library_app:index'))
 
