@@ -1,11 +1,12 @@
 from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Book, Author, Category, Checkout, CheckoutItem
+from .models import Book, Author, Category, Character, Checkout, CheckoutItem
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-# Create your views here.
+from django.db import connection, reset_queries
 import random
+# Create your views here.
 
 
 def index(request):
@@ -86,3 +87,14 @@ def detail(request, book_id):
         'author': author,
     }
     return render(request, 'catalog/details.html', context)
+
+def character(request, character_id):
+    
+    character = get_object_or_404(Character, id=character_id)
+    # info = Character.objects.filter()
+    # books = Book.objects.all().prefetch_related('books')
+    context = {
+    'character' : character,
+    # 'books' : books,
+    }
+    return render(request, 'catalog/character.html', context)

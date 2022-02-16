@@ -18,6 +18,10 @@
   <div class="card-footer bg-secondary d-flex justify-content-end">
     <a href="{% url 'library_app:add_to_cart' books.id %}"><i class="fas fa-cart-plus"></i></a>
    </div>
+  </div>
 </div>
-</div>
+{% for character in books.characters.all  %}
+<a href="{% url 'library_app:character' character.id %}"><h1>{{character.name}}</h1></a>
+{% endfor %}
+
 {% endblock content %}

@@ -35,6 +35,8 @@ class Book(models.Model):
     stock = models.PositiveIntegerField(default=random.randint(1, 5))
     likes = models.ManyToManyField(
         get_user_model(), related_name='users', blank=True)
+    page_count = models.PositiveIntegerField()
+    issue_number = models.PositiveIntegerField()
     category = models.ManyToManyField(Category, related_name='books')
     def __str__(self):
         return f"{self.title}"
@@ -44,6 +46,8 @@ class Character(models.Model):
     description = models.CharField(max_length=2000)
     image = models.CharField(max_length=500)
     books = models.ManyToManyField(Book, related_name='characters')
+    def __str__(self):
+        return f'{self.name}'
 
 class Author(models.Model):
     role = models.CharField(max_length=200, blank=True, null=True)
