@@ -1,8 +1,21 @@
 {% extends 'base.html' %}{% block content %}
-    <h1>{{character.name}}</h1>
-    <h1>{{character.description}}</h1>
-
-    {% for book in characters.objects.all %}
-        <h1>{{book.title}}</h1>
-    {% endfor %}
+<div class="container d-flex justify-content-center align-items-center vh-100">
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{character.image}}" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{character.name}}</h5>
+          <p class="card-text">{{character.description}}</p>
+          <h4>Comics {{character.name}} appears in</h4>
+              {% for book in character.books.all %}
+                  <a href="{% url 'library_app:detail' book.id %}" class="text-decoration-none"><h4 class="text-danger">{{book.title}}</h4></a>
+              {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

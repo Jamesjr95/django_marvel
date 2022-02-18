@@ -5,17 +5,19 @@
 }
 
 
-.card:hover{
+/* .card:hover{
    transform: scale(1.05);
 box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-}
+} */
 
 
-.detail_image img{
-    vertical-align: middle;
-    border-style: none;
-    width: 100%;
-    height: auto;
+.detail_image{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 300px;
+    object-fit: contain;
 
 }
 
@@ -23,13 +25,15 @@ box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
   position: relative;
   top: 0;
   transition: top ease 0.5s;
+  height: 100%;
+  width: 100%;
 }
 .img_hover:hover {
   top: -10px;
 }
 
 .book_title{
-  font-size: .8rem;
+  font-size: .9rem;
 }
 
 
@@ -38,3 +42,8 @@ box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
   width: 50px;
   height: 100px;
 }
+
+/* .index_page {
+  
+} */
+

@@ -1,3 +1,4 @@
+from ctypes import alignment
 from django.core.management.base import BaseCommand
 import requests
 import json
@@ -13,8 +14,9 @@ class Command(BaseCommand):
         
         Book.objects.all().delete()
         Author.objects.all().delete()
+        Character.objects.all().delete()
 
-        url = f'https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&dateRange=2017-01-01%2C2019-01-02&limit=10&ts={ts}&apikey={pub_key}&hash={hasht}'
+        url = f'https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&dateRange=2018-01-01%2C2020-12-25&limit=100&ts={ts}&apikey={pub_key}&hash={hasht}'
         
         index = 0
         response = requests.get(url)
@@ -25,7 +27,6 @@ class Command(BaseCommand):
         for comic in comics:
         
             title = comics[index]['title']
-            print(title)
             image_url = comics[index]['thumbnail']['path']+'/portrait_xlarge.jpg'
             description = comics[index]['textObjects']
             page_count = comics[index]['pageCount']
@@ -56,12 +57,41 @@ class Command(BaseCommand):
                 else:
                     description = hero_info[0]['description']
                 thumbnail = hero_info[0]['thumbnail']['path']+'/portrait_xlarge.jpg'
+                # print('create hero', name)
+                # print(thumbnail)
+                # print(description)
+
+                hero_stats = {} 
+
+                stats = f'https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json'
+                stat_response = requests.get(stats)
+                stat_response = stat_response.json()
+                stat_response = stat_response
+                
+                print(hero)
+                # for item in stat_response:
+                    
+                #     if hero in item.values():
+                #         appearance = item.get('appearance')
+                #         hero_stats['gender'] = appearance.get('gender')
+                #         hero_stats['race'] = appearance.get('race')
+                #         hero_stats['height'] = appearance.get('height')[0]
+                #         hero_stats['weight'] = appearance.get('weight')[0]
+                #         alignment = item.get('biography')
+                #         hero_stats['alighnment'] = alignment.get('alignment')
+                
                 
                 hero, created = Character.objects.get_or_create(
-                    name=hero,
+                    name=name,
                     image=thumbnail,
                     description=description,
+                    # gender = hero_stats['gender'],
+                    # race = hero_stats['race'],
+                    # height = hero_stats['height'],
+                    # weight = hero_stats['weight'],
+                    # alighnment = hero_stats['alighnment']
                 )
+                
                 hero.books.add(comic)
             
             for creator in comics[index]['creators']['items']:

@@ -46,6 +46,12 @@ class Character(models.Model):
     description = models.CharField(max_length=2000)
     image = models.CharField(max_length=500)
     books = models.ManyToManyField(Book, related_name='characters')
+    gender = models.CharField(max_length=100, null=True, blank=True)
+    race = models.CharField(max_length=100, null=True, blank=True)
+    height = models.CharField(max_length=100, null=True, blank=True)
+    weight = models.CharField(max_length=100, null=True, blank=True)
+    alighnment = models.CharField(max_length=100, null=True, blank=True)
+    
     def __str__(self):
         return f'{self.name}'
 

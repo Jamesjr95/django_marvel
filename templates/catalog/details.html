@@ -1,27 +1,34 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
-<div class="container d-flex justify-content-center">
-<div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="{{books.image_url}}" class="img-fluid rounded-start detail_image" alt="...">
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container vh-100">
+  <div class="row justify-content-center pt-5">
+    <div class="col-4 align-items-center">
+      <img src="{{books.image_url}}" class="img-fluid detail_image" alt="..." />
+      <a href="{% url 'library_app:add_to_cart' books.id %}" class="d-block"
+        ><i class="fas fa-cart-plus"></i
+      ></a>
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{books.title}}</h5>
-        <p class="card-text">{{author}}</p>
-        <p class="card-text">{{books.description|truncatewords:30}}</p>
-      </div>
+    <div class="col-4">
+      <h5 class="">{{books.title}}</h5>
+      {% for author in books.authors.all %}
+      <p class="">{{author.role}}: {{author}}</p>
+      {% endfor %}
+      <p class="">{{books.description|truncatewords:30}}</p>
     </div>
   </div>
-  <div class="card-footer bg-secondary d-flex justify-content-end">
-    <a href="{% url 'library_app:add_to_cart' books.id %}"><i class="fas fa-cart-plus"></i></a>
-   </div>
-  </div>
-</div>
-{% for character in books.characters.all  %}
-<a href="{% url 'library_app:character' character.id %}"><h1>{{character.name}}</h1></a>
-{% endfor %}
 
+    <div class="row text-center">
+      <h3>Characters in this comic</h3>
+      {% for character in books.characters.all %}
+      <div class="col-lg-4 flex-sm-column">
+        <a
+          href="{% url 'library_app:character' character.id %}"
+          class="text-decoration-none"
+        >
+          <img src="{{character.image}}" alt="" />
+          <h1 class="fs-5 d-block">{{character.name}}</h1></a
+        >
+      </div>
+      {% endfor %}
+    </div>
+</div>
 {% endblock content %}
