@@ -1,31 +1,23 @@
-{% extends 'base.html' %} {% load static %} {% block content %} {% if error %}
+{% extends 'base.html' %} {% load static %} {% block content %} 
+<div class="container">
+  <div class="row text-center">
+    <div class="col-12">
+{% if error %}
 {{error}} {% endif %}
 
 {% if late_message %}
   {{late_message}}
 {% endif %}
-<!-- <div class="container index_page">
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-wrap= true data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/static/images/Marvel_Comics_Wolverine_comics-57934.jpg" class="d-block w-100 carousel_img"  alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="/static/images/venom.jpg" class="d-block w-100 carousel_img"  alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="/static/images/spider.jpg" class="d-block w-100 carousel_img"  alt="...">
+</div>
+</div>
+<div class="row pt-5">
+  {% for book in books %}
+  <div class="col-lg-2 col-md-4 pt-2">
+          <a href="{% url 'library_app:detail' book.id %}" class="p-0 m-0">
+            <img src="{{book.image_url}}" class="img_hover link_container" title="{{book.title}}" alt="..."></a>
+          <a class="text-decoration-none" href="{% url 'library_app:detail' book.id %}"><h5 class="text-dark book_title text-center mt-2">{{book.title}}</h5></a>
+        </div>
+          {% endfor %}
       </div>
     </div>
-  </div> -->
-      <div class="d-flex justify-content-center row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 pt-4 mx-5 px-5">
-        {% for book in books %}
-        <div class="col align-items-center" >
-          <a href="{% url 'library_app:detail' book.id %}"><div class="d-flex justify-content-center">
-            <img src="{{book.image_url}}" class="img_hover align-items-center shadow detail_image" title="{{book.title}}" alt="..."></a>
-          </div>
-          <a class="text-decoration-none" href="{% url 'library_app:detail' book.id %}"><h5 class="card-title text-dark book_title text-center mt-2">{{book.title}}</h5></a>
-        </div>
-        {% endfor %}
-      </div>
 {% endblock content %}

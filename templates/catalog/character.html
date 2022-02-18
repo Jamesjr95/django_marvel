@@ -1,21 +1,19 @@
 {% extends 'base.html' %}{% block content %}
-<div class="container d-flex justify-content-center align-items-center vh-100">
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="{{character.image}}" class="img-fluid rounded-start" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{character.name}}</h5>
-          <p class="card-text">{{character.description}}</p>
-          <h4>Comics {{character.name}} appears in</h4>
-              {% for book in character.books.all %}
-                  <a href="{% url 'library_app:detail' book.id %}" class="text-decoration-none"><h4 class="text-danger">{{book.title}}</h4></a>
-              {% endfor %}
-        </div>
+<div class="container vh-100">
+    <div class="row g-0 pt-5">
+      <div class="col-12">
+        <img src="{{character.image}}" class="img-fluid" alt="...">
+        <h5 class="">{{character.name}}</h5>
+        <p class="">{{character.description}}</p>
       </div>
     </div>
+    <div class="row align-items-center">
+      <h4>Comics {{character.name}} appears in</h4>
+      {% for book in character.books.all %}
+      <div class="col-lg-3 col-md-8">
+                <a href="{% url 'library_app:detail' book.id %}" class="text-decoration-none related_chars"><img src="{{book.image_url}}" class="" alt=""><h5 class="fs-6">{{book.title}}</h5></a>
+              </div>
+            {% endfor %}
   </div>
 </div>
 {% endblock content %}
