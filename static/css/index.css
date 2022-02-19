@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 * {
   font-family: 'Roboto', sans-serif;
-  font-weight: 400;
+  font-weight: 200;
 }
 
 
@@ -12,12 +12,12 @@
 }
 
 
-.link_container img{
-  width: 300px;
+.link_container{
+  width: 250px;
   height: 200px;
-  display: block;
+  /* display: block;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: auto; */
   object-fit: contain;
 }
 
@@ -38,15 +38,9 @@
 }
 
 .book_title{
-  font-size: .9rem;
+  font-size: .8rem;
 }
 
-
-.carousel-item img{
-  object-fit: contain;
-  width: 50px;
-  height: 100px;
-}
 
 /* .index_page {
   

@@ -6,46 +6,29 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.db import connection, reset_queries
 import random
+from django.contrib import messages 
 # Create your views here.
 
 
 def index(request):
     books = Book.objects.all()
     author = Author.objects.all()
-    # author_name = ''
-    
-    # for book in books:
-    #     author_name = author.filter(books=book)[0]
-    #     print(author_name)
-    
-    category_options = {
-        'categories': [category.title for category in Category.objects.all()]
-    }
-
-    def filter_list(category):
-        return list(dict.fromkeys(category))
-    
-    
-    book_category = Category.objects.all()
-    psychological = filter_list(books.filter(
-        category__title__icontains='Psychological'))
-    
+  
 
     context = {
-        'category_options': category_options,
         'author_name': '',
         'books': books,
-       
+
     }
 
     if 'error' in request.session:
         context['error'] = request.session['error']
         del request.session['error']
-    
+
     if 'late_message' in request.session:
         context['late_message'] = request.session['late_message']
         del request.session['late_message']
-    
+
     return render(request, 'catalog/index.html', context)
 
 
@@ -59,21 +42,30 @@ def add_to_cart(request, book_id):
     today_time = today.strftime("%m/%d/%Y, %H:%M:%S")
     due_date = today + timezone.timedelta(minutes=1)
     print(today_time)
-    
-    if due_date >= today:
-        request.session['late_message'] = 'You have books that are overdue'
-        
-    elif not checkout_i.filter(checkout=checkout, book_id=book_id).exists():
+
+    if not checkout_i.filter(checkout=checkout, book_id=book_id).exists():
         checkout_item, created = CheckoutItem.objects.get_or_create(
             book=book, checkout=checkout)
 
         checkout_item.quantity += 1
         checkout_item.due_date = due_date
         checkout_item.save()
+        messages.success(request, "Cart updated!", extra_tags='success')
+    
+    elif due_date >= today:
+        print(due_date)
+        messages.warning(request, "You have overdue comicbooks", extra_tags='warning')
+
     else:
-        request.session['error'] = 'Can only checkout one of each comic'
+        messages.warning(request, "You can only checkout one of each comic", extra_tags='warning')
 
     return redirect(reverse('library_app:index'))
+
+@login_required
+def remove_from_cart(request, checkout_item_id):
+    checkout_item = get_object_or_404(CheckoutItem, id=checkout_item_id)
+    checkout_item.delete()
+    return redirect(reverse('users_app:profile'))
 
 
 def detail(request, book_id):
@@ -88,13 +80,14 @@ def detail(request, book_id):
     }
     return render(request, 'catalog/details.html', context)
 
+
 def character(request, character_id):
-    
+
     character = get_object_or_404(Character, id=character_id)
     # info = Character.objects.filter()
     # books = Book.objects.all().prefetch_related('books')
     context = {
-    'character' : character,
-    # 'books' : books,
+        'character': character,
+        # 'books' : books,
     }
     return render(request, 'catalog/character.html', context)
