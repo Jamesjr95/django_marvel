@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+    <!-- css -->
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 
     <!-- font awesome -->
@@ -27,17 +28,16 @@
       crossorigin="anonymous"
     ></script>
 
-   <script>"https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json"</script>
-
-    <!-- css -->
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <title>Library Project</title>
   </head>
 
   <body>
+    {% csrf_token %}
     {% include 'partials/_navbar.html' %} {% block content %} {% endblock content %}
 
     
-    <script src="../static/index.js"></script>
+    <script src="{% static 'index.js' %}"></script>
   </body>
 </html>

@@ -1,6 +1,7 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Book, Author, Category, Character, Checkout, CheckoutItem
+from .models import Book, Author, Character, Checkout, CheckoutItem
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.utils import timezone
@@ -79,6 +80,23 @@ def detail(request, book_id):
         'author': author,
     }
     return render(request, 'catalog/details.html', context)
+
+@login_required
+def like(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    print(1)
+    print(book_id)
+
+    if request.user not in book.likes.all():
+        book.likes.add(request.user)
+    else:
+        book.likes.remove(request.user)
+    print(book_id)
+    return JsonResponse({
+
+        'isLiked': request.user in book.likes.all(),
+        'likeCount': book.likes.count()
+    })
 
 
 def character(request, character_id):

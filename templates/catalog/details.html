@@ -2,10 +2,24 @@
 <div class="container vh-100">
   <div class="row justify-content-center pt-5">
     <div class="col-4 align-items-center">
-      <img src="{{books.image_url}}" class="img-fluid detail_container" alt="..." />
-      <a href="{% url 'library_app:add_to_cart' books.id %}" class="d-block"
-        ><i class="fas fa-cart-plus"></i
-      ></a>
+      <img
+        src="{{books.image_url}}"
+        class="img-fluid detail_container"
+        alt="..."
+      />
+      
+        <a href="{% url 'library_app:add_to_cart' books.id %}" class="d-block"
+          ><i class="fas fa-cart-plus"></i></a
+        >{{books.likes.all.count}} {% if request.user in book.likes.all %}
+        <span id="like-count-{{books.id}}">{{ pic.likes.all.count }}</span>
+        <i
+          class="fas fa-heart my-auto text-danger like"
+          id="like-{{book.id}}"
+        ></i>
+        {% else %}
+        <i class="far fa-heart my-auto like" id="like-{{books.id}}"></i>
+        {% endif %}
+     
     </div>
     <div class="col-4 my-auto">
       <h5 class="">{{books.title}}</h5>
@@ -16,19 +30,19 @@
     </div>
   </div>
 
-    <div class="row text-center justify-content-center">
-      <h3>Characters in this comic</h3>
-      {% for character in books.characters.all %}
-      <div class="col-lg-4 flex-sm-column">
-        <a
-          href="{% url 'library_app:character' character.id %}"
-          class="text-decoration-none related_chars"
-        >
-          <img src="{{character.image}}" alt="" />
-          <h1 class="fs-6 d-block">{{character.name}}</h1></a
-        >
-      </div>
-      {% endfor %}
+  <div class="row text-center justify-content-center">
+    <h3>Characters in this comic</h3>
+    {% for character in books.characters.all %}
+    <div class="col-lg-4 flex-sm-column">
+      <a
+        href="{% url 'library_app:character' character.id %}"
+        class="text-decoration-none related_chars"
+      >
+        <img src="{{character.image}}" alt="" />
+        <h1 class="fs-6 d-block">{{character.name}}</h1></a
+      >
     </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock content %}
