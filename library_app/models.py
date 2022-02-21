@@ -12,18 +12,6 @@ def get_upload_path(instance, filename):
     return f'images/avatars/{filename}'
 
 
-class Category(models.Model):
-    title = models.CharField(max_length=100)
-
-    class Meta:
-        verbose_name = ('Category')
-        verbose_name_plural = ('Categories')
-
-    def __str__(self):
-        return self.title
-
-# add a system of holds to the model for the book (many to many to Users),
-# keep track of which user has a book on hold
 
 # add library cards model if you finish early
 
@@ -37,7 +25,7 @@ class Book(models.Model):
         get_user_model(), related_name='users', blank=True)
     page_count = models.PositiveIntegerField()
     issue_number = models.PositiveIntegerField()
-    category = models.ManyToManyField(Category, related_name='books')
+    date = models.DateField()
     def __str__(self):
         return f"{self.title}"
 

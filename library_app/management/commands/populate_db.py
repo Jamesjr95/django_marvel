@@ -1,12 +1,10 @@
 from ctypes import alignment
 from django.core.management.base import BaseCommand
 import requests
-import json
-import hashlib
 from hidden import *
 
 
-from library_app.models import Book, Category, Author, Character, get_user_model
+from library_app.models import Book, Author, Character, get_user_model
 
 
 class Command(BaseCommand):
@@ -20,6 +18,7 @@ class Command(BaseCommand):
         
         index = 0
         response = requests.get(url)
+        print(response)
         comics = response.json().get('data').get('results')
         # print(comics)
         
@@ -27,10 +26,11 @@ class Command(BaseCommand):
         for comic in comics:
         
             title = comics[index]['title']
-            image_url = comics[index]['thumbnail']['path']+'/portrait_xlarge.jpg'
+            image_url = comics[index]['thumbnail']['path']+'/detail.jpg'
             description = comics[index]['textObjects']
             page_count = comics[index]['pageCount']
             issue_number = comics[index]['issueNumber']
+            date = comics[index]['dates'][0]['date'].split('T')[0]
             if description == []:
                 description = None
             else:
@@ -45,6 +45,7 @@ class Command(BaseCommand):
                 description = description,
                 page_count = page_count,
                 issue_number = issue_number,
+                date = date
             )
             for hero in comics[index]['characters']['items']:
                 hero = hero['name']
@@ -56,17 +57,17 @@ class Command(BaseCommand):
                     description = None
                 else:
                     description = hero_info[0]['description']
-                thumbnail = hero_info[0]['thumbnail']['path']+'/portrait_xlarge.jpg'
+                thumbnail = hero_info[0]['thumbnail']['path']+'/detail.jpg'
                 # print('create hero', name)
                 # print(thumbnail)
                 # print(description)
 
-                hero_stats = {} 
+                # hero_stats = {} 
 
-                stats = f'https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json'
-                stat_response = requests.get(stats)
-                stat_response = stat_response.json()
-                stat_response = stat_response
+                # stats = f'https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json'
+                # stat_response = requests.get(stats)
+                # stat_response = stat_response.json()
+                # stat_response = stat_response
                 
                 print(hero)
                 # for item in stat_response:

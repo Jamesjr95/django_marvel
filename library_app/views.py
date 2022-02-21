@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.contrib.auth.decorators import login_required
@@ -7,6 +8,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.db import connection, reset_queries
 import random
+import requests
 from django.contrib import messages 
 # Create your views here.
 
@@ -14,9 +16,13 @@ from django.contrib import messages
 def index(request):
     books = Book.objects.all()
     author = Author.objects.all()
-  
-
+    
+    today = timezone.now()
+    last_week = today - timedelta(days=7)
+    newest_comics = books.order_by('-date')
+    
     context = {
+        'newest_comics' : newest_comics,
         'author_name': '',
         'books': books,
 

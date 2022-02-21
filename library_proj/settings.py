@@ -44,12 +44,12 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
-    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -58,10 +58,9 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = False
 # CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000',]
 CORS_ALLOWED_ORIGINS = ['http://localhost:8000',]
-# Access-Control-Allow-Origin: 'http://localhost:8000'
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
 
-
+ALLOWED_HOSTS = ['127.0.0.1']
 ROOT_URLCONF = 'library_proj.urls'
 
 TEMPLATES = [
