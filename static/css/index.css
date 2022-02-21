@@ -3,13 +3,13 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 200;
 }
-
-
-/* .detail_container{
-  width: 180px;
-  height: 300px;
-  object-fit: contain;
-} */
+.detail_container img {
+  width: 300px;
+  height: auto;
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+}
 
 
 .link_container img{

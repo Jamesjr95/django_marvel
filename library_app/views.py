@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, date
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render, reverse, redirect
 from django.contrib.auth.decorators import login_required
@@ -17,9 +17,9 @@ def index(request):
     books = Book.objects.all()
     author = Author.objects.all()
     
-    today = timezone.now()
-    last_week = today - timedelta(days=7)
-    newest_comics = books.order_by('-date')
+    startdate = date.today()
+    enddate = startdate - timedelta(days=7)
+    newest_comics = books.filter(date__range=[startdate, enddate])
     
     context = {
         'newest_comics' : newest_comics,
@@ -27,14 +27,6 @@ def index(request):
         'books': books,
 
     }
-
-    if 'error' in request.session:
-        context['error'] = request.session['error']
-        del request.session['error']
-
-    if 'late_message' in request.session:
-        context['late_message'] = request.session['late_message']
-        del request.session['late_message']
 
     return render(request, 'catalog/index.html', context)
 
@@ -79,11 +71,12 @@ def detail(request, book_id):
 
     books = get_object_or_404(Book, id=book_id)
     author = Author.objects.filter(books=books)[0]
-
+    # writer = Author.objects.filter(Role=writer)
     # author = get_object_or_404(Author, name=name)
     context = {
         'books': books,
         'author': author,
+        # 'writer': writer
     }
     return render(request, 'catalog/details.html', context)
 

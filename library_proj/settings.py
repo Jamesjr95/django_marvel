@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from corsheaders.defaults import default_headers
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -61,6 +62,10 @@ CORS_ALLOWED_ORIGINS = ['http://localhost:8000',]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:8000']
 
 ALLOWED_HOSTS = ['127.0.0.1']
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'access-control-allow-origin'
+]
 ROOT_URLCONF = 'library_proj.urls'
 
 TEMPLATES = [

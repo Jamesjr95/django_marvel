@@ -14,7 +14,7 @@ function handleLikeEvent(event){
     bookId = bookId.split("-")[1]
     console.log(bookId);
     
-    url = "http://localhost:8000/like/" + bookId
+    url = "http://127.0.0.1:8000/like/" + bookId
     
     headers = {
         "Content-Type": "application/json",
@@ -25,8 +25,8 @@ function handleLikeEvent(event){
     .then(response=>{
         console.log(response);
       const isLiked = response.data.isLiked
-      const likeButton = document.querySelector("#like-${bookId}")
-      const likeCount = document.querySelector("#like-count-${bookId}")
+      const likeButton = document.querySelector(`#like-${bookId}`)
+      const likeCount = document.querySelector(`#like-count-${bookId}`)
 
       likeCount.innerHTML = response.data.likeCount
 

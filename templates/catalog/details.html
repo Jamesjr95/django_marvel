@@ -1,31 +1,29 @@
+<!-- add js so when you click on comicbook cover you will get carousel that shows characters in the comic -->
+
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="container vh-100">
+<div class="container-fluid">
   <div class="row justify-content-center pt-5">
-    <div class="col-4 align-items-center">
-      <img
-        src="{{books.image_url}}"
-        class="img-fluid detail_container"
-        alt="..."
-      />
-      
-        <a href="{% url 'library_app:add_to_cart' books.id %}" class="d-block"
-          ><i class="fas fa-cart-plus"></i></a
-        >{{books.likes.all.count}} {% if request.user in book.likes.all %}
+    <div class="col-4 align-items-center detail_container">
+      <img src="{{books.image_url}}" class="img-fluid" alt="..." />
+      <div class="col-2">
+        <a href="{% url 'library_app:add_to_cart' books.id %}" class=""
+          ><i class="fas fa-cart-plus"></i
+        ></a>
         <span id="like-count-{{books.id}}">{{ pic.likes.all.count }}</span>
+        {% if request.user in books.likes.all %}
         <i
           class="fas fa-heart my-auto text-danger like"
-          id="like-{{book.id}}"
+          id="like-{{books.id}}"
         ></i>
         {% else %}
         <i class="far fa-heart my-auto like" id="like-{{books.id}}"></i>
         {% endif %}
-     
+      </div>
     </div>
-    <div class="col-4 my-auto">
-      <h5 class="">{{books.title}}</h5>
-      {% for author in books.authors.all %}
-      <p class="">{{author.role}}: {{author}}</p>
-      {% endfor %}
+    <div class="col-6">
+      <h3 class="">{{books.title}}</h3>
+       {% for author in books.authors.all %}
+        {{author.role}}:{{ author }} <br>{% endfor %}
       <p class="">{{books.description|truncatewords:30}}</p>
       <h3>{{books.date}}</h3>
     </div>
