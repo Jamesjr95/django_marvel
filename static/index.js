@@ -38,7 +38,7 @@ function handleLikeEvent(event){
         likeButton.classList.add("far")
       }
     })
-    .cath(error => console.log(error))
+    // .cath(error => console.log(error))
 }
 
 likeButtons.forEach(likeButton=>

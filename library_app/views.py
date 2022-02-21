@@ -85,7 +85,7 @@ def detail(request, book_id):
 def like(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     print(1)
-    print(book_id)
+    print(book)
 
     if request.user not in book.likes.all():
         book.likes.add(request.user)
