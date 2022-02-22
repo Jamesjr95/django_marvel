@@ -11,9 +11,12 @@
   margin-right: auto;
 }
 
+nav .page ul li a{
+  color: red;
+}
 
 .link_container img{
-  width: 200px;
+  width: 150px;
   height: auto;
   /* display: block; */
   /* margin-left: auto;

@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+    {% for comic in search_query %}
+        <a href=""><img src="{{comic.image_url}}" alt=""></a>
+        <h1>{{ comic.title }}</h1>
+    {% endfor %}
+</div>
+</div>
+    </div>
+{% endblock content %}

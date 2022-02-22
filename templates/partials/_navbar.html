@@ -1,7 +1,7 @@
 {% load static %}
 <nav class="navbar navbar-expand-md navbar-dark bg-danger px-5">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'library_app:index' %}"><i class="fas fa-home"></i></a>
+      <a class="navbar-brand" href="{% url 'library_app:index' %}">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,9 +9,9 @@
         <ul class="navbar-nav w-100 justify-content-end my-auto p-1">
             {% if request.user.is_authenticated %}
           
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link text-light" aria-current="page" href="#">Checkout</a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link link-danger" href="{% url 'users_app:logout' %}">Logout</a>
             </li>
@@ -28,9 +28,14 @@
             </li>
         </ul>
         {% endif %}
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn btn-light btn-outline-warning" type="submit">Search</button>
+        <form action="{% url 'library_app:search_query' %}" method="POST" class="d-flex my-auto">
+          <fieldset>
+            <label for="search-query">
+          <input class="form-control me-2" type="text" id="search-query" name="search-query"  class='form-control' placeholder="Search" aria-label="Search">
+        </label>
+      </fieldset>
+      {% csrf_token %}
+      <button class="btn btn btn-light btn-outline-warning my-auto " type="submit">Search</button>
         </form>
       </div>
       </div>

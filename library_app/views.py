@@ -6,25 +6,38 @@ from .models import Book, Author, Character, Checkout, CheckoutItem
 from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.utils import timezone
-from django.db import connection, reset_queries
+# from django.db import connection, reset_queries
 import random
 import requests
 from django.contrib import messages 
+from django.core.paginator import Paginator
 # Create your views here.
 
 
-def index(request):
+def index(request, page_num=1, per_page=24):
+    
+    page_num = request.GET.get('page_num') or page_num
+    per_page = request.GET.get('per_page') or per_page
+
     books = Book.objects.all()
+    books = books.order_by('-date')
     author = Author.objects.all()
     
-    startdate = date.today()
-    enddate = startdate - timedelta(days=7)
-    newest_comics = books.filter(date__range=[startdate, enddate])
+    products_page = Paginator(books, per_page).get_page(page_num)
+    
+    # results = books.filter(Q(title_icontains=your_search_query))
+
+    
+    # startdate = date.today()
+    # enddate = startdate - timedelta(days=7)
+    
+    # newest_comics = books.filter(date__range=[startdate, enddate])
     
     context = {
-        'newest_comics' : newest_comics,
+        # 'newest_comics' : newest_comics,
         'author_name': '',
-        'books': books,
+        # 'books': books,
+        'products_page': products_page
 
     }
 
@@ -64,15 +77,14 @@ def add_to_cart(request, book_id):
 def remove_from_cart(request, checkout_item_id):
     checkout_item = get_object_or_404(CheckoutItem, id=checkout_item_id)
     checkout_item.delete()
-    return redirect(reverse('users_app:profile'))
+    return redirect(reverse('users_app:profile', kwargs={'username': request.user.username}))
 
 
 def detail(request, book_id):
 
     books = get_object_or_404(Book, id=book_id)
     author = Author.objects.filter(books=books)[0]
-    # writer = Author.objects.filter(Role=writer)
-    # author = get_object_or_404(Author, name=name)
+    
     context = {
         'books': books,
         'author': author,
@@ -108,3 +120,18 @@ def character(request, character_id):
         # 'books' : books,
     }
     return render(request, 'catalog/character.html', context)
+
+def search_query(request):
+    books = Book.objects.all()
+   
+    search_query = request.POST.get('search-query')
+    print(search_query)
+    if search_query:
+        search_query = books.filter(
+            Q(title__icontains=search_query)
+        )
+    context = {
+        'search_query': search_query
+    }
+
+    return render(request, 'catalog/search_query.html', context)
