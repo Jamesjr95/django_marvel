@@ -27,12 +27,12 @@
             <div class="row">
                 {% for checkout_item in user.checkout.checkout_items.all %}
                 <div class="col-6 align-items-center pt-4">
-                    <h4 class="m-0 flex-column flex-md-row align-items-center related_chars fs-6">
-                        <img src="{{checkout_item.book.image_url}}" alt="{{checkout_item.book.id}}"class="mx-3 my-2">
+                    <h4 class="m-0 flex-column flex-md-row fs-6">
+                        <img src="{{checkout_item.book.image_url}}" alt="{{checkout_item.book.id}}"class="" width='100' height='auto'>
                         {{checkout_item.book.title}}
                     </h4>
                     <a href="{% url 'library_app:remove_from_cart' checkout_item.id %}">
-                        <button class="btn btn-danger mx-2 d-block">Delete</button>
+                        <button class="btn btn-danger mt-1">Delete</button>
                     </a>
                     <hr>
                     </div>

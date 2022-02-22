@@ -43,6 +43,12 @@ def index(request, page_num=1, per_page=24):
 
     return render(request, 'catalog/index.html', context)
 
+def characters(request):
+    characters = Character.objects.all().order_by('name')
+    context = {
+        'characters': characters
+    }
+    return render(request, 'catalog/characters.html', context)
 
 @login_required
 def add_to_cart(request, book_id):
@@ -123,15 +129,22 @@ def character(request, character_id):
 
 def search_query(request):
     books = Book.objects.all()
-   
+    # book_id = get_object_or_404(Book, id=book_id)
+    # print(book_id)
+    
     search_query = request.POST.get('search-query')
-    print(search_query)
+    
     if search_query:
         search_query = books.filter(
             Q(title__icontains=search_query)
         )
+        print(search_query)
+        # for book in search_query:
+        #     ids = get_object_or_404(Book, id=book.pk)
+        #     print(ids)
     context = {
-        'search_query': search_query
+        'search_query': search_query,
+        # 'book': book,
     }
 
     return render(request, 'catalog/search_query.html', context)

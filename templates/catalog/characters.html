@@ -1,0 +1,27 @@
+{% extends 'base.html' %}{% load static %} {% block content %}
+{% include 'partials/indexes.html' %}
+<div class="container">
+  <div class="row pt-5 text-center">
+    {% for char in characters %}
+    <div class="col-lg-2 col-md-4 pt-2">
+      <a
+        href="{% url 'library_app:character' char.id %}"
+        class="link_container"
+      >
+      
+        <img
+          src="{{char.image}}"
+          class="img_hover img_fluid"
+          title="{{char.name}}"
+          alt="..."
+      /></a>
+      <a
+        class="text-decoration-none"
+        href="{% url 'library_app:character' char.id %}"
+        ><h5 class="text-dark book_title mt-2">{{char.name}}</h5></a
+      >
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

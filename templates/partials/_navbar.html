@@ -1,43 +1,46 @@
 {% load static %}
-<nav class="navbar navbar-expand-md navbar-dark bg-danger px-5">
-    <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <a class="navbar-brand" href="{% url 'library_app:index' %}">Home</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav w-100 justify-content-end my-auto p-1">
-            {% if request.user.is_authenticated %}
-          
-            <!-- <li class="nav-item">
-              <a class="nav-link text-light" aria-current="page" href="#">Checkout</a>
-            </li> -->
-            <li class="nav-item">
-              <a class="nav-link link-danger" href="{% url 'users_app:logout' %}">Logout</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link link-danger" href="{% url 'users_app:profile' user.username %}">{{user.username}}'s Account</a>
-            </li>
-            {% else %}
-                    
-            <li class="nav-item">
-                <a class="nav-link link-danger" href="{% url 'users_app:login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link link-danger" href="{% url 'users_app:register' %}">Sign up</a>
-            </li>
-        </ul>
-        {% endif %}
-        <form action="{% url 'library_app:search_query' %}" method="POST" class="d-flex my-auto">
-          <fieldset>
-            <label for="search-query">
-          <input class="form-control me-2" type="text" id="search-query" name="search-query"  class='form-control' placeholder="Search" aria-label="Search">
-        </label>
-      </fieldset>
-      {% csrf_token %}
-      <button class="btn btn btn-light btn-outline-warning my-auto " type="submit">Search</button>
-        </form>
-      </div>
-      </div>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users_app:logout' %}">Logout</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{user.username}}'s Account
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{% url 'users_app:profile' user.username %}">Checkout</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" action="{% url 'library_app:search_query' %}" method="POST">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        {% csrf_token %}
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
-  </nav>
+  </div>
+</nav>
+        {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'users_app:login' %}" >Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'users_app:register' %}" >Register</a>
+      </li>
+      </ul>
+      {% endif %}
+     
+    </div>
+  </div>
+</nav>

@@ -1,13 +1,16 @@
 {% extends 'base.html' %} {% load static %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-lg-5">
+<div class="container p-4">
     {% for comic in search_query %}
-        <a href=""><img src="{{comic.image_url}}" alt=""></a>
-        <h1>{{ comic.title }}</h1>
+    <div class="row search_container p-3">
+        <div class="col-lg-4">
+            <a href="{% url 'library_app:detail' comic.id %}" class="img_hover"><img src="{{comic.image_url}}" alt=""></a>
+        </div>
+        <div class="col-lg-3 my-auto">
+            <h5>{{ comic.title }}</h5>
+    </div>
+    
+    </div>
     {% endfor %}
-</div>
-</div>
     </div>
 {% endblock content %}

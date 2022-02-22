@@ -3,12 +3,35 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 200;
 }
+
+/* for position element in image */
+/* .bottomleft {
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  font-size: 18px;
+} */
+.polaroid_footer {
+  padding: 10px 20px;
+}
+
+div.polaroid {
+  width: 80%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
 .detail_container img {
   width: 300px;
   height: auto;
   display: block; 
   margin-left: auto;
   margin-right: auto;
+}
+.search_container img {
+  width: 200px;
+  
 }
 
 nav .page ul li a{

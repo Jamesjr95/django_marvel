@@ -1,19 +1,30 @@
-{% extends 'base.html' %}{% block content %}
-<div class="container vh-100">
-    <div class="row g-0 pt-5">
-      <div class="col-12 link_container">
-        <img src="{{character.image}}" class="img-fluid" alt="...">
-        <h5 class="">{{character.name}}</h5>
-        <p class="">{{character.description}}</p>
-      </div>
+{% extends 'base.html' %}{% load static %}{% block content %}
+
+<div class="container">
+  <div class="row g-0 pt-5">
+    <div class="col-2 link_container">
+      <img src="{{character.image}}" class="img-fluid" alt="..." width="200px" />
     </div>
-    <div class="row align-items-center">
-      <h4>Comics {{character.name}} appears in</h4>
-      {% for book in character.books.all %}
-      <div class="col-lg-3 col-md-8">
-                <a href="{% url 'library_app:detail' book.id %}" class="text-decoration-none related_chars"><img src="{{book.image_url}}" class="" alt=""><h5 class="fs-6">{{book.title}}</h5></a>
-              </div>
-            {% endfor %}
+    <div class="col-5">
+      <div class="text-center">
+      <h5 class="">{{character.name}}</h5></div>
+      <p class="">{{character.description}}</p>
+    </div>
+  </div>
+  <div class="row">
+    <h4>Comics {{character.name}} appears in</h4>
+    {% for book in character.books.all %}
+    <div class="col-2 flex-md-column align-items-center">
+      <!-- <div class="col-lg-3 col-md-8"> -->
+        <a
+          href="{% url 'library_app:detail' book.id %}"
+          class="text-decoration-none related_chars"
+          ><img src="{{book.image_url}}" class="" alt="" />
+          <h5 class="fs-6">{{book.title}}</h5></a
+        >
+      <!-- </div> -->
+    </div>
+      {% endfor %}
   </div>
 </div>
 {% endblock content %}

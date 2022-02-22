@@ -3,11 +3,12 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container-fluid">
   <div class="row justify-content-center pt-5">
-    <div class="col-4 detail_container justify-content-center">
-      <img src="{{books.image_url}}" class="img-fluid" alt="..." />
-      <div class="col-10 d-flex justify-content-center align-items-center">
+    <div class="col-3 detail_container justify-content-center">
+      <div class="polaroid">
+      <img src="{{books.image_url}}" style="width: 100%;" class="img-fluid" alt="..." />
+      <div class="d-flex justify-content-between align-items-center">
         <a href="{% url 'library_app:add_to_cart' books.id %}" class=""
-          ><i class="fas fa-cart-plus"></i
+          ><div class="container polaroid_footer "><i class="fas fa-cart-plus"></i
         ></a>
         <span id="like-count-{{books.id}}">{{ pic.likes.all.count }}</span>
         {% if request.user in books.likes.all %}
@@ -19,11 +20,13 @@
         <i class="far fa-heart my-auto like m-2" id="like-{{books.id}}"></i>
         {% endif %}
       </div>
+      </div>
+    </div>
     </div>
     <div class="col-6">
       <h3 class="">{{books.title}}</h3>
-       {% for author in books.authors.all %}
-        {{author.role}}: {{ author }} <br>{% endfor %}
+      {% for author in books.authors.all %} {{author.role}}: {{ author }}
+      <br />{% endfor %}
       <p class="">{{books.description|truncatewords:30}}</p>
       <h3>{{books.date}}</h3>
     </div>
