@@ -160,3 +160,6 @@ form.search button:hover {
   cursor: pointer;
 }
 
+#log_button{
+  border-radius: 0%;
+}

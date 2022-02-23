@@ -14,8 +14,8 @@ class UserForm(forms.ModelForm):
         widgets = {
             'first_name': forms.TextInput(attrs={'class':'form-control'}),
             'last_name': forms.TextInput(attrs={'class':'form-control'}),
-            'username': forms.TextInput(attrs={'class':'form-control'}),
-            'password': forms.PasswordInput(attrs={'class':'form-control'}),
+            'username': forms.TextInput(attrs={'class':'form-control', 'id':'log_button'}),
+            'password': forms.PasswordInput(attrs={'class':'form-control', 'id':'log_button'}),
         }
 
 class UserAuthForm(UserForm):
