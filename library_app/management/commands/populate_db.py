@@ -21,11 +21,9 @@ class Command(BaseCommand):
         offset = 0
         offset = str(offset)
 
-        def search_results():
-            global limit
-            global offset
-            return limit, offset
+        
         while True:
+            print('loop', loop)
             offset = str(offset)
             print(offset, type(offset))
            
@@ -40,6 +38,7 @@ class Command(BaseCommand):
                 description = comic['textObjects']
                 page_count = comic['pageCount']
                 issue_number = comic['issueNumber']
+                price = comic['prices'][0]['price']
                 date = comic['dates'][0]['date'].split('T')[0]
                 if description == []:
                     description = None
@@ -52,6 +51,7 @@ class Command(BaseCommand):
                 comic_instance = Book.objects.create(
                     title = title,
                     image_url = image_url,
+                    price = price,
                     description = description,
                     page_count = page_count,
                     issue_number = issue_number,
@@ -117,7 +117,7 @@ class Command(BaseCommand):
             offset = int(offset)
             offset += 100
             if loop == 3:
-                False
+                return False
             # characters, created = 
             # for category in map(str, category):
             #     category = category_query(category)

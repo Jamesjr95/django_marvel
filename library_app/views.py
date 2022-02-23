@@ -59,7 +59,7 @@ def characters(request,  page_num=1, per_page=24):
 @login_required
 def add_to_cart(request, book_id):
     book = get_object_or_404(Book, id=book_id)
-    checkout_i = CheckoutItem.objects.all()
+    checkout_item = CheckoutItem.objects.all()
 
     checkout = Checkout.objects.get(owner=request.user)
     today = timezone.now()
@@ -67,21 +67,21 @@ def add_to_cart(request, book_id):
     due_date = today + timezone.timedelta(minutes=1)
     print(today_time)
 
-    if not checkout_i.filter(checkout=checkout, book_id=book_id).exists():
-        checkout_item, created = CheckoutItem.objects.get_or_create(
-            book=book, checkout=checkout)
-
-        checkout_item.quantity += 1
-        checkout_item.due_date = due_date
-        checkout_item.save()
-        messages.success(request, "Cart updated!", extra_tags='success')
     
-    elif due_date >= today:
-        print(due_date)
-        messages.warning(request, "You have overdue comicbooks", extra_tags='warning')
+    checkout_item, created = CheckoutItem.objects.get_or_create(
+        book=book, checkout=checkout)
 
-    else:
-        messages.warning(request, "You can only checkout one of each comic", extra_tags='warning')
+    checkout_item.quantity += 1
+    checkout_item.due_date = due_date
+    checkout_item.save()
+    messages.success(request, "Cart updated!", extra_tags='success')
+    
+    # elif due_date >= today:
+    #     print(due_date)
+    #     messages.warning(request, "You have overdue comicbooks", extra_tags='warning')
+
+    # else:
+    #     messages.warning(request, "You can only checkout one of each comic", extra_tags='warning')
 
     return redirect(reverse('library_app:index'))
 
@@ -125,8 +125,7 @@ def like(request, book_id):
 def character(request, character_id):
 
     character = get_object_or_404(Character, id=character_id)
-    # info = Character.objects.filter()
-    # books = Book.objects.all().prefetch_related('books')
+  
     context = {
         'character': character,
         # 'books' : books,

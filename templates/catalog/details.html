@@ -1,7 +1,7 @@
 <!-- add js so when you click on comicbook cover you will get carousel that shows characters in the comic -->
 <!-- add like and cart superimposed on the image -->
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="container-fluid">
+<div class="container-fluid h-100">
   <div class="row justify-content-center pt-5 ">
     <div class="col-3 justify-content-center">
       <div class="container detail m-0 p-0">
@@ -44,6 +44,6 @@
    {% endfor %}
     </div>
 
-    
+    {% include 'partials/footer.html' %}
   </div>
 {% endblock content %}

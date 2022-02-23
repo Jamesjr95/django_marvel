@@ -17,7 +17,7 @@ def get_upload_path(instance, filename):
 
 class Book(models.Model):
     title = models.CharField(max_length=50)
-    # price = models.DecimalField(decimal_places=2, max_digits=10)
+    price = models.DecimalField(decimal_places=2, max_digits=10)
     description = models.CharField(max_length=2000, null=True, blank=True)
     image_url = models.CharField(max_length=200)
     stock = models.PositiveIntegerField(default=random.randint(1, 5))
@@ -61,6 +61,9 @@ class CheckoutItem(models.Model):
     quantity = models.PositiveIntegerField(default=0)
     due_date = models.DateField(null=True, blank=True)
 
+    def item_total_price(self):
+        return self.quantity * self.book.price
+
     def __str__(self):
         return f'{self.quantity} {self.book}'
 
@@ -70,6 +73,17 @@ class Checkout(models.Model):
     books = models.ManyToManyField(
         Book, through=CheckoutItem, related_name='user_checkout', blank=True)
 
+    def item_count(self):
+        count = 0
+        for checkout_item in self.checkout_items.all():
+            count += checkout_item.quantity
+        return count
+
+    def total_price(self):
+        total = 0
+        for checkout_item in self.checkout_items.all():
+            total += checkout_item.item_total_price()
+        return total
     class Meta:
         verbose_name = ('Checkout')
         verbose_name_plural = ('Checkout')

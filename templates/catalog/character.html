@@ -12,27 +12,26 @@
     </div>
   </div>
   <div class="row  pt-5">
-  <div class="col-4 text-center">
+  <div class="col-4 text-center d-none d-md-block">
   <h3 class="">Biography</h3>
 </div>
-  <div class="col-4 text-center">
+  <div class="col-4 text-center d-none d-md-block">
   <p class="">{{character.description}}</p>
 </div>
 </div>
-  <div class="row text-center pt-3">
+  <div class="row text-center d-flex pt-3 justify-content-center">
     <h4>Comics {{character.name}} appears in</h4>
     {% for book in character.books.all %}
-    <div class="col-2 flex-md-column align-items-center">
-      <!-- <div class="col-lg-3 col-md-8"> -->
+    <div class="col-lg-2  col-md-4 align-items-center">
         <a
           href="{% url 'library_app:detail' book.id %}"
           class="text-decoration-none related_chars"
           ><img src="{{book.image_url}}" class="" alt="" />
           <h5 class="fs-6">{{book.title}}</h5></a
         >
-      <!-- </div> -->
     </div>
       {% endfor %}
   </div>
 </div>
+{% include 'partials/footer.html' %}
 {% endblock content %}
