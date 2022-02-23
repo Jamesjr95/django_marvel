@@ -2,22 +2,24 @@
 <!-- add like and cart superimposed on the image -->
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container-fluid">
-  <div class="row justify-content-center pt-5">
-    <div class="col-3 detail_container justify-content-center">
-      <div class="polaroid">
-      <img src="{{books.image_url}}" style="width: 100%;" class="img-fluid" alt="..." />
-      <div class="polaroid_footer d-flex justify-content-end">
+  <div class="row justify-content-center pt-5 ">
+    <div class="col-3  justify-content-center">
+      <div class="container detail">
+      <img src="{{books.image_url}}" style="width: 100%;" class="image" alt="..." />
+      <div class=''><span id="like-count-{{books.id}}" class=" fs-4 text-center">Likes: {{ pic.likes.all.count }}</span></div>
+      <div class="middle">
+        <div class="text d-flex justify-content-center text-center my-auto ">
         <a href="{% url 'library_app:add_to_cart' books.id %}" class=""
-          ><i class="fas fa-solid fa-cart-arrow-down mx-4"></i></a>
-        <span id="like-count-{{books.id}}" class="mx-1">{{ pic.likes.all.count }}</span>
+          ><i class="fas fa-solid fa-cart-arrow-down mx-2 fa-2x"></i></a>
         {% if request.user in books.likes.all %}
         <i
-          class="fas fa-heart my-auto text-danger like"
+          class="fas fa-solid fa-heart fa-beat mx-2 fa-2x text-danger like"
           id="like-{{books.id}}"
         ></i>
         {% else %}
-        <i class="fas fa-heart my-auto like" id="like-{{books.id}}"></i>
+        <i class="fas fa-solid fa-heart fa-beat mx-2 fa-2x like text-primary" id="like-{{books.id}}"></i>
         {% endif %}
+      </div>
       </div>
       </div>
     </div>
@@ -29,21 +31,21 @@
       <h3 class="align-items-end">{{books.date}}</h3>
     </div>
   </div>
-  </div>
-
-  <div class="row text-center justify-content-center">
     <h3>Characters in this comic</h3>
-    {% for character in books.characters.all %}
-    <div class="col-lg-4 flex-sm-column">
-      <a
-        href="{% url 'library_app:character' character.id %}"
-        class="text-decoration-none related_chars"
-      >
-        <img src="{{character.image}}" alt="" />
-        <h1 class="fs-6 d-block">{{character.name}}</h1></a
-      >
+    <div class="row row-cols-6 row-cols-md-6 g-2">
+      {% for character in books.characters.all %}
+      <div class="col">
+        <div class="card">
+          <a href="{% url 'library_app:character' character.id %}"><img src="{{character.image}}" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">{{character.name}}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+          </div>
+        </div>
+      </div>
+   {% endfor %}
     </div>
-    {% endfor %}
+
+    
   </div>
-</div>
 {% endblock content %}

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 * {
   font-family: 'Roboto Condensed', sans-serif;
+  box-sizing: border-box
 }
 
 /* for position element in image */
@@ -12,7 +13,7 @@
 } */
 
 /* comic book details */
-.container {
+.detail {
   position: relative;
   width: 50%;
 }
@@ -37,17 +38,16 @@
   text-align: center;
 }
 
-.container:hover .image {
+.detail:hover .image {
   opacity: 0.3;
 }
 
-.container:hover .middle {
+.detail:hover .middle {
   opacity: 1;
 }
 
 .text {
-  background-color: #04AA6D;
-  color: white;
+  color: black;
   font-size: 16px;
   padding: 16px 32px;
 }
@@ -71,16 +71,39 @@
 .navbar a.active {
   border-bottom: 1px solid white;
 }
-.polaroid_footer {
-  padding: 5px 5px;
+
+form.search input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
 }
 
-div.polaroid {
-  width: 80%;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
+/* Style the submit button */
+form.search button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
 }
+
+form.search button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+/* form.search::after {
+
+} */
+
+
 
 .character_container img{
   width: 400px;
@@ -96,11 +119,6 @@ div.polaroid {
 }
 .search_container img {
   width: 150px;
-  
-}
-
-nav .page ul li a{
-  color: red;
 }
 
 .link_container img{
@@ -113,23 +131,34 @@ nav .page ul li a{
 }
 
 .img_hover{
-  /* position: relative;
-  top: 0; */
   transition:ease 0.5s;
-  
 }
 .img_hover:hover {
-  /* top: -10px; */
   opacity: .7;
 }
 
 .related_chars img{
-  width: 90px;
+  width: 120px;
   height: 90px;
   object-fit: contain;
 }
 
 .book_title{
-  font-size: .8rem;
+  font-size: .9rem;
 }
 
+.hover_container {
+  transition:ease 0.5s;
+}
+
+.hover_container:hover {
+  color: blue;
+}
+
+.pagination a{
+  color: black;
+}
+
+.fa-heart:hover{
+  cursor: pointer;
+}

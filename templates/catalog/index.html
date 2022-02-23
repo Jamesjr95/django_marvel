@@ -1,25 +1,25 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 {% include 'partials/indexes.html' %}
 <div class="container">
-  <div class="row text-center">
-    <div class="col-12">
-      {% if messages %} {% for message in messages %} {{message}} {% endfor %}
-      {% endif %}
+  {% if messages %} 
+  <div class="row text-center justify-content-center pt-4">
+    <div class="col-4 lg-offset-4">
+      {% for message in messages %} 
+      <div class="alert alert-primary" role="alert">
+        {{message}}
+      </div>
+      {% endfor %}
     </div>
   </div>
+  {% endif %}
   <div class="row">
     <div class="col-12">
       <h1>{{newest_comics.title}}</h1>
     </div>
   </div>
   <div class="row pt-5 text-center">
-    <!-- <div class="row justify-content-end">
-      <div class="col-2 justify-content-end">
-        <button class="btn-outline-light"><i class="fas fa-solid fa-filter"></i></button>
-      </div>
-    </div> -->
     {% for book in products_page %}
-    <div class="col-lg-2 col-md-4 pt-2">
+    <div class="col-lg-3 col-md-4 pt-2">
       <a href="{% url 'library_app:detail' book.id %}" class="link_container">
         <img
           src="{{book.image_url}}"

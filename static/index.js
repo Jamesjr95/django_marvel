@@ -1,5 +1,4 @@
 // add js to listen to the search form to query the database
-
 let likeButtons = document.querySelectorAll(".like"),
     csrfToken = document.getElementsByName("csrfmiddlewaretoken")[0];
 
@@ -28,7 +27,7 @@ function handleLikeEvent(event){
       const likeButton = document.querySelector(`#like-${bookId}`)
       const likeCount = document.querySelector(`#like-count-${bookId}`)
 
-      likeCount.innerHTML = response.data.likeCount
+      likeCount.innerHTML = `Likes: ${response.data.likeCount}`
 
       if(isLiked){
         likeButton.classList.remove("far")
@@ -44,3 +43,4 @@ function handleLikeEvent(event){
 likeButtons.forEach(likeButton=>
   likeButton.addEventListener("click", handleLikeEvent)
 );
+

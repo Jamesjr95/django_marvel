@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row pt-5 text-center">
     {% for char in characters %}
-    <div class="col-lg-2 col-md-4 pt-2">
+    <div class="col-lg-2 col-md-4 pt-2 hover_container">
       <a
         href="{% url 'library_app:character' char.id %}"
         class="link_container"
