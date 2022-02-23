@@ -3,8 +3,8 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container-fluid">
   <div class="row justify-content-center pt-5 ">
-    <div class="col-3  justify-content-center">
-      <div class="container detail">
+    <div class="col-3 justify-content-center">
+      <div class="container detail m-0 p-0">
       <img src="{{books.image_url}}" style="width: 100%;" class="image" alt="..." />
       <div class=''><span id="like-count-{{books.id}}" class=" fs-4 text-center">Likes: {{ pic.likes.all.count }}</span></div>
       <div class="middle">
@@ -23,25 +23,23 @@
       </div>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-3">
       <h3 class="">{{books.title}}</h3>
+      <div class="d-none d-lg-block">
       {% for author in books.authors.all %} {{author.role}}: {{ author }}
-      <br />{% endfor %}
+      <br />
+      {% endfor %}
+    </div>
       <p class="">{{books.description|truncatewords:30}}</p>
       <h3 class="align-items-end">{{books.date}}</h3>
     </div>
   </div>
     <h3>Characters in this comic</h3>
-    <div class="row row-cols-6 row-cols-md-6 g-2">
+    <div class="row text-center">
       {% for character in books.characters.all %}
-      <div class="col">
-        <div class="card">
-          <a href="{% url 'library_app:character' character.id %}"><img src="{{character.image}}" class="card-img-top" alt="..."></a>
-          <div class="card-body">
-            <h5 class="card-title">{{character.name}}</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
+      <div class="col-lg-2  col-md-3 col-sm-5 link_container">
+          <a href="{% url 'library_app:character' character.id %}"><img src="{{character.image}}" class="" alt="..."></a>
+            <h5 class="">{{character.name}}</h5>
       </div>
    {% endfor %}
     </div>

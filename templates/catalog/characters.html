@@ -2,7 +2,7 @@
 {% include 'partials/indexes.html' %}
 <div class="container">
   <div class="row pt-5 text-center">
-    {% for char in characters %}
+    {% for char in products_page %}
     <div class="col-lg-2 col-md-4 pt-2 hover_container">
       <a
         href="{% url 'library_app:character' char.id %}"
@@ -23,5 +23,6 @@
     </div>
     {% endfor %}
   </div>
+  {% include 'partials/paginator.html' %}
 </div>
 {% endblock content %}

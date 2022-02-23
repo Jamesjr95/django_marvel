@@ -122,11 +122,8 @@ form.search button:hover {
 }
 
 .link_container img{
-  width: 150px;
+  width: 140px;
   height: auto;
-  /* display: block; */
-  /* margin-left: auto;
-  margin-right: auto; */
   object-fit: contain;
 }
 
