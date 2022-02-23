@@ -5,13 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
     <!-- css -->
     <link rel="stylesheet" href="{% static 'css/index.css' %}" />
 
     <!-- font awesome -->
     <script
-      src="https://kit.fontawesome.com/7e23fc28a2.js"
+      src="https://kit.fontawesome.com/ff1d9ad615.js"
       crossorigin="anonymous"
     ></script>
 
@@ -27,17 +27,16 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-
-   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- axios  -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <title>Library Project</title>
   </head>
 
   <body>
-    {% csrf_token %}
-    {% include 'partials/_navbar.html' %} {% block content %} {% endblock content %}
+    {% csrf_token %} {% include 'partials/_navbar.html' %} {% block content %}
+    {% endblock content %}
 
-    
     <script src="{% static 'index.js' %}"></script>
   </body>
 </html>

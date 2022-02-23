@@ -2,16 +2,24 @@
 
 <div class="container">
   <div class="row g-0 pt-5">
-    <div class="col-2 link_container">
-      <img src="{{character.image}}" class="img-fluid" alt="..." width="200px" />
+    <div class="col-5 detail_container">
+      <img src="{{character.image}}" class="img-fluid" alt="..." />
     </div>
-    <div class="col-5">
+    <div class="col-3 my-auto">
       <div class="text-center">
-      <h5 class="">{{character.name}}</h5></div>
-      <p class="">{{character.description}}</p>
+      <h1 class="">{{character.name}}</h1></div>
+      
     </div>
   </div>
-  <div class="row">
+  <div class="row  pt-5">
+  <div class="col-4 text-center">
+  <h3 class="">Biography</h3>
+</div>
+  <div class="col-4 text-center">
+  <p class="">{{character.description}}</p>
+</div>
+</div>
+  <div class="row text-center pt-3">
     <h4>Comics {{character.name}} appears in</h4>
     {% for book in character.books.all %}
     <div class="col-2 flex-md-column align-items-center">

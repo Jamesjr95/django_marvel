@@ -13,6 +13,11 @@
     </div>
   </div>
   <div class="row pt-5 text-center">
+    <!-- <div class="row justify-content-end">
+      <div class="col-2 justify-content-end">
+        <button class="btn-outline-light"><i class="fas fa-solid fa-filter"></i></button>
+      </div>
+    </div> -->
     {% for book in products_page %}
     <div class="col-lg-2 col-md-4 pt-2">
       <a href="{% url 'library_app:detail' book.id %}" class="link_container">

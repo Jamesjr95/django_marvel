@@ -6,30 +6,29 @@
     <div class="col-3 detail_container justify-content-center">
       <div class="polaroid">
       <img src="{{books.image_url}}" style="width: 100%;" class="img-fluid" alt="..." />
-      <div class="d-flex justify-content-between align-items-center">
+      <div class="polaroid_footer d-flex justify-content-end">
         <a href="{% url 'library_app:add_to_cart' books.id %}" class=""
-          ><div class="container polaroid_footer "><i class="fas fa-cart-plus"></i
-        ></a>
-        <span id="like-count-{{books.id}}">{{ pic.likes.all.count }}</span>
+          ><i class="fas fa-solid fa-cart-arrow-down mx-4"></i></a>
+        <span id="like-count-{{books.id}}" class="mx-1">{{ pic.likes.all.count }}</span>
         {% if request.user in books.likes.all %}
         <i
-          class="fas fa-heart my-auto text-danger like m-2"
+          class="fas fa-heart my-auto text-danger like"
           id="like-{{books.id}}"
         ></i>
         {% else %}
-        <i class="far fa-heart my-auto like m-2" id="like-{{books.id}}"></i>
+        <i class="fas fa-heart my-auto like" id="like-{{books.id}}"></i>
         {% endif %}
       </div>
       </div>
-    </div>
     </div>
     <div class="col-6">
       <h3 class="">{{books.title}}</h3>
       {% for author in books.authors.all %} {{author.role}}: {{ author }}
       <br />{% endfor %}
       <p class="">{{books.description|truncatewords:30}}</p>
-      <h3>{{books.date}}</h3>
+      <h3 class="align-items-end">{{books.date}}</h3>
     </div>
+  </div>
   </div>
 
   <div class="row text-center justify-content-center">

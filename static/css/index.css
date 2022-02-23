@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 * {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 200;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 /* for position element in image */
@@ -11,8 +10,69 @@
   left: 16px;
   font-size: 18px;
 } */
+
+/* comic book details */
+.container {
+  position: relative;
+  width: 50%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
+/* navbar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 10px;
+  text-decoration: none;
+  font-size: 17px;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar a:hover {
+  border-bottom: 1px solid white;
+}
+
+.navbar a.active {
+  border-bottom: 1px solid white;
+}
 .polaroid_footer {
-  padding: 10px 20px;
+  padding: 5px 5px;
 }
 
 div.polaroid {
@@ -20,6 +80,11 @@ div.polaroid {
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 25px;
+}
+
+.character_container img{
+  width: 400px;
+  height: 90px;
 }
 
 .detail_container img {
@@ -30,7 +95,7 @@ div.polaroid {
   margin-right: auto;
 }
 .search_container img {
-  width: 200px;
+  width: 150px;
   
 }
 
