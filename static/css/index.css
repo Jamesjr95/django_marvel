@@ -4,13 +4,8 @@
   box-sizing: border-box;
 }
 
-/* for position element in image */
-/* .bottomleft {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-  font-size: 18px;
-} */
+
+
 
 /* comic book details */
 .detail {
@@ -22,7 +17,7 @@
   opacity: 1;
   display: block;
   width: 100%;
-  height: auto;
+  height: 150;
   transition: .5s ease;
   backface-visibility: hidden;
 }
@@ -98,12 +93,6 @@ form.search button:hover {
   background: #0b7dda;
 }
 
-/* Clear floats */
-/* form.search::after {
-
-} */
-
-
 
 .character_container img{
   width: 400px;
@@ -135,8 +124,8 @@ form.search button:hover {
 }
 
 .related_chars img{
-  width: 120px;
-  height: 90px;
+  width: 90px;
+  height: 100px;
   object-fit: contain;
 }
 
@@ -160,6 +149,22 @@ form.search button:hover {
   cursor: pointer;
 }
 
-#log_button{
+#log_button, #id_password, #id_username{
   border-radius: 0%;
+}
+
+.footer {
+  margin-top: 10px;
+  padding: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
 }

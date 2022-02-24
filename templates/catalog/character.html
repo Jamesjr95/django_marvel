@@ -1,36 +1,36 @@
 {% extends 'base.html' %}{% load static %}{% block content %}
 
-<div class="container">
+<div class="container-fluid h-100 d-inline-block m-0 p-0">
   <div class="row g-0 pt-5">
     <div class="col-5 detail_container">
       <img src="{{character.image}}" class="img-fluid" alt="..." />
     </div>
-    <div class="col-3 my-auto">
-      <div class="text-center">
-      <h1 class="">{{character.name}}</h1></div>
-      
+    <div class="col-lg-3 d-flex flex-md-column justify-content-start my-auto">
+      <div class="">
+        <h1 class="text-primary">{{character.name}}</h1>
+      </div>
     </div>
   </div>
-  <div class="row  pt-5">
-  <div class="col-4 text-center d-none d-md-block">
-  <h3 class="">Biography</h3>
-</div>
-  <div class="col-4 text-center d-none d-md-block">
-  <p class="">{{character.description}}</p>
-</div>
-</div>
-  <div class="row text-center d-flex pt-3 justify-content-center">
-    <h4>Comics {{character.name}} appears in</h4>
-    {% for book in character.books.all %}
-    <div class="col-lg-2  col-md-4 align-items-center">
-        <a
-          href="{% url 'library_app:detail' book.id %}"
-          class="text-decoration-none related_chars"
-          ><img src="{{book.image_url}}" class="" alt="" />
-          <h5 class="fs-6">{{book.title}}</h5></a
-        >
+  <div class="row pt-5">
+    <div class="col-4 border-top text-center d-none d-md-block">
+      <h3 class="">BIO</h3>
     </div>
-      {% endfor %}
+    <div class="col-4 text-start d-none d-lg-block">
+      <p class="">{{character.description}}</p>
+    </div>
+  </div>
+  <div class="row text-center d-flex pt-3 justify-content-center">
+    <h4 class="text-primary">More {{character.name}}</h4>
+    {% for book in character.books.all %}
+    <div class="col-lg-2 col-md-3 align-items-center">
+      <a
+        href="{% url 'library_app:detail' book.id %}"
+        class="text-decoration-none related_chars"
+        ><img src="{{book.image_url}}" class="" alt="" />
+        <h5 class="fs-6">{{book.title}}</h5></a
+      >
+    </div>
+    {% endfor %}
   </div>
 </div>
 {% include 'partials/footer.html' %}
