@@ -21,7 +21,6 @@ def index(request, page_num=1, per_page=24):
 
     books = Book.objects.all()
     books = books.order_by('-date')
-    author = Author.objects.all()
     
     products_page = Paginator(books, per_page).get_page(page_num)
     
@@ -35,23 +34,20 @@ def index(request, page_num=1, per_page=24):
     
     context = {
         # 'newest_comics' : newest_comics,
-        'author_name': '',
-        # 'books': books,
         'products_page': products_page
 
     }
 
     return render(request, 'catalog/index.html', context)
 
-def characters(request,  page_num=1, per_page=30):
+def characters(request,  page_num=1, per_page=24):
     page_num = request.GET.get('page_num') or page_num
     per_page = request.GET.get('per_page') or per_page
-    characters = Character.objects.all().order_by('name')
+    characters = Character.objects.all()
     
     products_page = Paginator(characters, per_page).get_page(page_num)
     
     context = {
-        'characters': characters,
         'products_page': products_page
     }
     return render(request, 'catalog/characters.html', context)

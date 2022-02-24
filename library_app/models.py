@@ -26,6 +26,10 @@ class Book(models.Model):
     page_count = models.PositiveIntegerField()
     issue_number = models.PositiveIntegerField()
     date = models.DateField()
+
+    class Meta:
+        ordering = ('title',)
+    
     def __str__(self):
         return f"{self.title}"
 
@@ -40,6 +44,9 @@ class Character(models.Model):
     weight = models.CharField(max_length=100, null=True, blank=True)
     alighnment = models.CharField(max_length=100, null=True, blank=True)
     
+    class Meta:
+        ordering = ('name',)
+
     def __str__(self):
         return f'{self.name}'
 
@@ -47,6 +54,8 @@ class Author(models.Model):
     role = models.CharField(max_length=200, blank=True, null=True)
     name = models.CharField(max_length=200)
     books = models.ManyToManyField(Book, related_name='authors')
+    class Meta:
+        ordering = ('name',)
 
     def __str__(self):
         return f"{self.name}"

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}{% load static %} {% block content %}
 {% include 'partials/indexes.html' %}
-<div class="container-fluid vh-100">
+<div class="container-fluid min-vh-100 p-0 m-0">
   <div class="row pt-5 text-center  px-5 mx-3">
     {% for char in products_page %}
     <div class="col-lg-2 col-md-4 pt-2 hover_container">
@@ -25,4 +25,6 @@
   </div>
 </div>
 {% include 'partials/paginator.html' %}
+{% include 'partials/footer.html' %}
+
 {% endblock content %}

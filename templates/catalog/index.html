@@ -1,6 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-{% include 'partials/indexes.html' %}
-<div class="container-fluid p-0 m-0">
+<div class="container-fluid min-vh-100 p-0 m-0">
   {% if messages %} 
   <div class="row text-center justify-content-center pt-4>
     <div class="col-4 lg-offset-4">
@@ -10,16 +9,11 @@
       </div>
       {% endfor %}
     </div>
-  </div>
+  
   {% endif %}
-  <div class="row">
-    <div class="col-12 ">
-      <h1>{{newest_comics.title}}</h1>
-    </div>
-  </div>
-  <div class="row pt-5 text-center px-5 mx-3">
+  <div class="row pt-3 text-center px-3 mx-3">
     {% for book in products_page %}
-    <div class="col-lg-2 col-md-4  mx-auto m-0 p-0 g-1 pt-2">
+    <div class="col-lg-2 col-md-4 mx-auto m-0 p-0 g-1 pt-2">
       <a href="{% url 'library_app:detail' book.id %}" class="link_container">
         <img
         src="{{book.image_url}}"
@@ -34,8 +28,10 @@
         >
       </div>
       {% endfor %}
-      {% include 'partials/paginator.html' %}
     </div>
+      {% include 'partials/paginator.html' %}
+  </div>
+    {% include 'partials/footer.html' %}
     
     
     
