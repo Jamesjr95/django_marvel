@@ -1,11 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 * {
   font-family: 'Roboto Condensed', sans-serif;
-  box-sizing: border-box;
 }
-
-
-
 
 /* comic book details */
 .detail {
@@ -142,7 +138,7 @@ form.search button:hover {
 }
 
 .pagination a{
-  color: black;
+  color: #2196f3;
 }
 
 .fa-heart:hover{
@@ -153,18 +149,3 @@ form.search button:hover {
   border-radius: 0%;
 }
 
-.footer {
-  margin-top: 10px;
-  padding: 0;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  color: white;
-  text-align: center;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}

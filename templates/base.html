@@ -34,10 +34,10 @@
     <title>Library Project</title>
   </head>
   
-  <body>
+  <body class="">
     {% csrf_token %} {% include 'partials/_navbar.html' %} {% block content %}
     {% endblock content %}
-    
+    {% include 'partials/footer.html' %}
     <script src="{% static 'index.js' %}"></script>
   </body>
 </html>
