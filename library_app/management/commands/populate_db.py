@@ -23,9 +23,7 @@ class Command(BaseCommand):
 
         
         while True:
-            print('loop', loop)
             offset = str(offset)
-            print(offset, type(offset))
            
             url = f'https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&dateDescriptor=thisMonth&limit={limit}&offset={offset}&ts={ts}&apikey={pub_key}&hash={hasht}'
             response = requests.get(url)
