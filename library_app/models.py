@@ -12,9 +12,6 @@ def get_upload_path(instance, filename):
     return f'images/avatars/{filename}'
 
 
-
-# add library cards model if you finish early
-
 class Book(models.Model):
     title = models.CharField(max_length=50)
     price = models.DecimalField(decimal_places=2, max_digits=10)

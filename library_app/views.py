@@ -24,16 +24,7 @@ def index(request, page_num=1, per_page=24):
     
     products_page = Paginator(books, per_page).get_page(page_num)
     
-    # results = books.filter(Q(title_icontains=your_search_query))
-
-    
-    # startdate = date.today()
-    # enddate = startdate - timedelta(days=7)
-    
-    # newest_comics = books.filter(date__range=[startdate, enddate])
-    
     context = {
-        # 'newest_comics' : newest_comics,
         'products_page': products_page
 
     }
@@ -60,7 +51,7 @@ def add_to_cart(request, book_id):
     checkout = Checkout.objects.get(owner=request.user)
     today = timezone.now()
     today_time = today.strftime("%m/%d/%Y, %H:%M:%S")
-    due_date = today + timezone.timedelta(minutes=1)
+    due_date = today + timezone.timedelta(days=7)
     print(today_time)
 
     
@@ -72,14 +63,19 @@ def add_to_cart(request, book_id):
     checkout_item.save()
     messages.success(request, "Cart updated!", extra_tags='success')
     
-    # elif due_date >= today:
-    #     print(due_date)
-    #     messages.warning(request, "You have overdue comicbooks", extra_tags='warning')
-
-    # else:
-    #     messages.warning(request, "You can only checkout one of each comic", extra_tags='warning')
-
     return redirect(reverse('library_app:index'))
+
+@login_required
+def update_cart(request, checkout_item_id):
+    checkout_item = get_object_or_404(CheckoutItem, id=checkout_item_id)
+    
+    new_quantity = request.POST.get('quantity')
+    
+    checkout_item.quantity = new_quantity
+    
+    checkout_item.save()
+    
+    return redirect(reverse('users_app:profile', kwargs= {'username': request.user.username}))
 
 @login_required
 def remove_from_cart(request, checkout_item_id):
@@ -96,7 +92,6 @@ def detail(request, book_id):
     context = {
         'books': books,
         'author': author,
-        # 'writer': writer
     }
     return render(request, 'catalog/details.html', context)
 
@@ -123,15 +118,12 @@ def character(request, character_id):
   
     context = {
         'character': character,
-        # 'books' : books,
     }
     return render(request, 'catalog/character.html', context)
 
 def search_query(request):
     books = Book.objects.all()
-    # book_id = get_object_or_404(Book, id=book_id)
-    # print(book_id)
-    
+   
     search_query = request.POST.get('search-query')
     
     if search_query:
@@ -139,12 +131,9 @@ def search_query(request):
             Q(title__icontains=search_query)
         )
         print(search_query)
-        # for book in search_query:
-        #     ids = get_object_or_404(Book, id=book.pk)
-        #     print(ids)
+  
     context = {
         'search_query': search_query,
-        # 'book': book,
     }
 
     return render(request, 'catalog/search_query.html', context)
