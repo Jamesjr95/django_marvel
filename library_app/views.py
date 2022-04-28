@@ -103,7 +103,6 @@ def detail(request, book_id):
 @login_required
 def like(request, book_id):
     book = get_object_or_404(Book, id=book_id)
-    print(1)
     print(book)
 
     if request.user not in book.likes.all():

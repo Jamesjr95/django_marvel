@@ -1,6 +1,6 @@
 {% extends 'base.html' %}{% load static %}{% block content %}
 
-<div class="container-fluid vh-100 d-inline-block m-0 p-0">
+<div class="container-fluid min-vh-100 d-inline-block m-0 p-0">
   <div class="row g-0 pt-5">
     <div class="col-5 detail_container">
       <img src="{{character.image}}" class="img-fluid" alt="..." />
@@ -33,4 +33,5 @@
     {% endfor %}
   </div>
 </div>
+{% include 'partials/footer.html' %}
 {% endblock content %}

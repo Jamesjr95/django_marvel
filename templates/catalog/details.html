@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<div class="container-fluid vh-100 m-0 p-0">
+<div class="container-fluid min-vh-100 m-0 p-0">
   <div class="row justify-content-center pt-5 ">
     <div class="col-3 justify-content-center">
       <div class="container detail m-0 p-0">
@@ -41,7 +41,7 @@
       </div>
    {% endfor %}
     </div>
+    {% include 'partials/footer.html' %}
   </div>
-  {% include 'partials/footer.html' %}
 
 {% endblock content %}
