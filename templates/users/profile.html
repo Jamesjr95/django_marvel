@@ -1,28 +1,26 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container min-vh-100">
   <div class="row pt-4">
-    <div class="col-5">
+    <div class="col-3">
       <h4>Comic book</h4>
     </div>
-    <div class="col-3 text-center d-none d-sm-block">
-      <h4>Quantity</h4>
-    </div>
-    <div class="col-3 text-center d-none d-sm-block">
+    <div class="col-3 text-center d-sm-none d-md-block d-none d-sm-block">
       <h4>Price</h4>
     </div>
   </div>
   {% for checkout_item in user.checkout.checkout_items.all %}
   <div class="row pt-3">
-    <div class="col-5 d-flex align-items-center border-top">
+    <div class="col-3 d-flex align-items-center border-top">
       <img
-      src="{{checkout_item.book.image_url}}"
-      alt="{{checkout_item.book.id}}"
-      class=""
-      width="100"
-      
+        src="{{checkout_item.book.image_url}}"
+        alt="{{checkout_item.book.id}}"
+        class=""
+        width="100"
       />
       <div class="col-6">
-        <h4 class="m-0 flex-column d-none d-lg-block justify-content-center align-self-center text-center flex-md-row fs-6">
+        <h4
+          class="m-0 flex-column d-none d-lg-block justify-content-center align-self-center text-center flex-md-row fs-6"
+        >
           {{checkout_item.book.title}}
         </h4>
       </div>
@@ -31,29 +29,40 @@
           <i class="far fa-solid fa-x text-danger pt-1"></i>
         </a>
       </div>
-      <hr/>
+      <hr />
     </div>
-    <div class="col-3 d-flex align-items-center justify-content-center text-center d-none d-sm-block">
-      <form action="{% url 'library_app:update_cart' checkout_item.id %}" method="POST">
-        <input type="number" name="quantity" value="{{checkout_item.quantity}}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-sm btn-info">Update</button>
-    </form>
-    </div>
-    <div class="col-3 d-flex align-items-center justify-content-center text-center d-none d-sm-block">
+    <div
+      class="col-3 d-flex align-items-center justify-content-center text-center d-none d-sm-block d-sm-none d-md-block"
+    >
       ${{checkout_item.book.price}}
     </div>
   </div>
- 
+  <div class="row pt-2">
+    <div class="col-3">
+      <form
+        action="{% url 'library_app:update_cart' checkout_item.id %}"
+        method="POST"
+        class=""
+      >
+        <input
+          type="number"
+          name="quantity"
+          value="{{checkout_item.quantity}}"
+        />
+        {% csrf_token %}
+        <button type="submit" class="btn btn-sm btn-info">Update</button>
+      </form>
+    </div>
+  </div>
+
   {% endfor %}
   <div class="row">
-  <div class="col-6 d-flex justify-content-end">
-    <h4>Total</h4>
-  </div>
-  <div class="col-4 d-flex justify-content-center">
-    <h4>{{user.checkout.total_price}}</h4>
+    <div class="col-4 d-flex justify-content-start">
+      <h4>Total</h4>
+    </div>
+    <div class="col-3 d-flex justify-content-center">
+      <h4>{{user.checkout.total_price}}</h4>
+    </div>
   </div>
 </div>
-</div>
-{% include 'partials/footer.html' %}
-{% endblock content %}
+{% include 'partials/footer.html' %} {% endblock content %}
