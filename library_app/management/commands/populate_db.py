@@ -1,7 +1,7 @@
 from ctypes import alignment
 from django.core.management.base import BaseCommand
 import requests
-from hidden import *
+from library_proj.hidden import *
 
 
 from library_app.models import Book, Author, Character, get_user_model
