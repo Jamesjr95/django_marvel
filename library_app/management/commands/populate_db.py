@@ -31,7 +31,6 @@ class Command(BaseCommand):
             for comic in comics:
             
                 title = comic['title']
-                print(title)
                 image_url = comic['thumbnail']['path']+'/detail.jpg'
                 description = comic['textObjects']
                 page_count = comic['pageCount']
@@ -42,7 +41,6 @@ class Command(BaseCommand):
                     description = None
                 else:
                     description = description[0]['text']
-                    # print(description)
                 
 
                 
@@ -66,38 +64,13 @@ class Command(BaseCommand):
                     else:
                         description = hero_info[0]['description']
                     thumbnail = hero_info[0]['thumbnail']['path']+'/landscape_xlarge.jpg'
-                    # print('create hero', name)
-                    # print(thumbnail)
-                    # print(description)
-
-                    # hero_stats = {} 
-
-                    # stats = f'https://cdn.jsdelivr.net/gh/akabab/superhero-api@0.3.0/api/all.json'
-                    # stat_response = requests.get(stats)
-                    # stat_response = stat_response.json()
-                    # stat_response = stat_response
-                    
-                    # for item in stat_response:
-                        
-                    #     if hero in item.values():
-                    #         appearance = item.get('appearance')
-                    #         hero_stats['gender'] = appearance.get('gender')
-                    #         hero_stats['race'] = appearance.get('race')
-                    #         hero_stats['height'] = appearance.get('height')[0]
-                    #         hero_stats['weight'] = appearance.get('weight')[0]
-                    #         alignment = item.get('biography')
-                    #         hero_stats['alighnment'] = alignment.get('alignment')
+                
                     
                     
                     hero, created = Character.objects.get_or_create(
                         name=name,
                         image=thumbnail,
                         description=description,
-                        # gender = hero_stats['gender'],
-                        # race = hero_stats['race'],
-                        # height = hero_stats['height'],
-                        # weight = hero_stats['weight'],
-                        # alighnment = hero_stats['alighnment']
                     )
                     
                     hero.books.add(comic_instance)
@@ -116,10 +89,3 @@ class Command(BaseCommand):
             offset += 100
             if loop == 3:
                 return False
-            # characters, created = 
-            # for category in map(str, category):
-            #     category = category_query(category)
-            #     category, created = Category.objects.get_or_create(
-            #         title=category)
-            #     book.category.add(category)
-            
