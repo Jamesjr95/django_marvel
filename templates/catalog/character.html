@@ -20,6 +20,8 @@
     </div>
   </div>
   <div class="row text-center d-flex pt-3 justify-content-center">
+    {% if character.books.all %}
+      
     <h4 class="text-primary">More {{character.name}}</h4>
     {% for book in character.books.all %}
     <div class="col-lg-2 col-md-3 align-items-center">
@@ -31,6 +33,7 @@
       >
     </div>
     {% endfor %}
+    {% endif %}
   </div>
 </div>
 {% include 'partials/footer.html' %}

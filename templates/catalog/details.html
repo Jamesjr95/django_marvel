@@ -42,6 +42,8 @@
     </div>
   </div>
   <div class="row text-center">
+    {% if books.characters.all %}
+      
     <h3 class="text-primary pb-4 border-top">Characters in this comic</h3>
     {% for character in books.characters.all %}
     <div class="col-lg-2 mb-5 col-md-3 col-sm-5 link_container">
@@ -51,6 +53,7 @@
       <h5 class="">{{character.name}}</h5>
     </div>
     {% endfor %}
+    {% endif %}
   </div>
 </div>
 {% include 'partials/footer.html' %}
