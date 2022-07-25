@@ -1,9 +1,7 @@
 from ctypes import alignment
 from django.core.management.base import BaseCommand
 import requests
-from library_proj.hidden import *
-
-
+from library_proj.secret import *
 from library_app.models import Book, Author, Character, get_user_model
 
 
@@ -14,18 +12,16 @@ class Command(BaseCommand):
         Author.objects.all().delete()
         Character.objects.all().delete()
 
-        # print(comics)
         loop = 0
         limit = 100
         limit = str(limit)
         offset = 0
         offset = str(offset)
-
         
         while True:
             offset = str(offset)
            
-            url = f'https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&dateDescriptor=thisMonth&limit={limit}&offset={offset}&ts={ts}&apikey={pub_key}&hash={hasht}'
+            url = f'https://gateway.marvel.com:443/v1/public/comics?format=comic&formatType=comic&dateDescriptor=thisMonth&limit={limit}&offset={offset}&ts={ts}&apikey={pub_key}&hash={hash_t}'
             response = requests.get(url)
             comics = response.json().get('data').get('results')
             for comic in comics:
