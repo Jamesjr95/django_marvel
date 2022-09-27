@@ -85,7 +85,7 @@ Django Marvel is an app where you can view, checkout & like various Marvel comic
   - view list of associated comics
   - bio of character
 - Registration
-  -user registration form using django forms
+  - user registration form using django forms
 - Login
   - login form
   - redirect to users cart on login
