@@ -1,4 +1,4 @@
-# ClimbUp
+# Django Marvel
 
 Repo for PDX Code guild captstone
 
