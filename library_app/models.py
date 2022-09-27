@@ -3,8 +3,6 @@ from django.db import models
 from django.contrib.auth import get_user_model
 import random
 
-from django.forms import Textarea
-
 # Create your models here.
 
 
