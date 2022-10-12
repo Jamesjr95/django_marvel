@@ -52,13 +52,11 @@
   border-bottom: 1px solid transparent;
 }
 
-.navbar a:hover {
-  border-bottom: 1px solid white;
+/* .navbar a:hover {
 }
 
 .navbar a.active {
-  border-bottom: 1px solid white;
-}
+} */
 
 form.search input[type=text] {
   padding: 10px;
