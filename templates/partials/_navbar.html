@@ -1,8 +1,8 @@
 {% load static %}
-<div class="d-flex flex-wrap align-items-start justify-content-center justify-content-lg-start p-3"
+<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start p-3 px-5"
   style="background-color: #b40001;">
   <a class="d-flex align-items-center" href="{% url 'library_app:index' %}"><img
-      src="/static/images/icons8-marvel-50.png" class="" alt=""></a>
+      src="/static/images/icons8-marvel-50.png" class="" alt="" style="height: 3rem;"></a>
   <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center">
     <!-- <li>
       <a class="nav-link border text-light" href="{% url 'library_app:index' %}">Home</a>
@@ -10,25 +10,26 @@
     <li>
       <a class="nav-link text-light" href="{% url 'library_app:characters' %}">Characters</a>
     </li>
-    {% if request.user.is_authenticated %}
-    <li>
-      <a class="nav-link text-light" href="{% url 'users_app:logout' %}">Logout</a>
-    </li>
-    <li>
-      <a class="nav-link text-light" href="{% url 'users_app:profile' user.username %}">
-        Cart
-      </a>
-    </li>
-    {% endif %}
   </ul>
-  <form class="col-12 col-lg-auto me-lg-3" action="{% url 'library_app:search_query' %}" method="POST">
-    <input class="form-control form-control-dark" name="search-query" id="search-query" type="text" placeholder="Search..." aria-label="Search" style="font-style: italic;">
+  <form class="col-12 col-lg-auto me-lg-3 mb-3 mb-lg-0" action="{% url 'library_app:search_query' %}" method="POST">
+    <input class="form-control form-control-dark" name="search-query" id="search-query" type="text"
+      placeholder="Search..." aria-label="Search" style="font-style: italic;">
     {% csrf_token %}
   </form>
+  {% if request.user.is_authenticated %}
+  <div class="text-end h-auto">
+    <button class="btn me-2 btn-warning"><a class="text-decoration-none text-dark"
+        href="{% url 'users_app:logout' %}">Logout</a></button>
+    <a class="text-decoration-none text-dark" href="{% url 'users_app:profile' user.username %}"> <img
+        src="/static/images/icons8-shopping-cart-30.png" alt=""></a>
+  </div>
+  {% endif %}
   {% if not request.user.is_authenticated %}
   <div class="text-end">
-    <button class="btn btn-outline-light me-2"><a class="text-decoration-none text-dark" href="{% url 'users_app:login' %}">Login</a></button>
-    <button class="btn btn-warning"><a class="text-decoration-none text-dark" href="{% url 'users_app:register' %}">Register</a></button>
+    <button class="btn btn-outline-light me-2"><a class="text-decoration-none text-dark"
+        href="{% url 'users_app:login' %}">Login</a></button>
+    <button class="btn btn-warning"><a class="text-decoration-none text-dark"
+        href="{% url 'users_app:register' %}">Register</a></button>
   </div>
   {% endif %}
 </div>
