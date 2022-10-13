@@ -4,12 +4,6 @@
   <a class="d-flex align-items-center" href="{% url 'library_app:index' %}"><img
       src="/static/images/icons8-marvel-50.png" class="" alt="" style="height: 3rem;"></a>
   <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center">
-    <!-- <li>
-      <a class="nav-link border text-light" href="{% url 'library_app:index' %}">Home</a>
-    </li> -->
-    <li>
-      <a class="nav-link text-light" href="{% url 'library_app:characters' %}">Characters</a>
-    </li>
   </ul>
   <form class="col-12 col-lg-auto me-lg-3 mb-3 mb-lg-0" action="{% url 'library_app:search_query' %}" method="POST">
     <input class="form-control form-control-dark" name="search-query" id="search-query" type="text"
@@ -32,4 +26,18 @@
         href="{% url 'users_app:register' %}">Register</a></button>
   </div>
   {% endif %}
+</div>
+<div class="row justify-content-end text-center">
+  <div class="col-4">
+    <div class="dropdown mr-5">
+      <button class="btn shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <img src="/static/images/icons8-slider-48.png" alt="">
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="{% url 'library_app:characters' %}">Characters</a></li>
+        <li><a class="dropdown-item" href="{% url 'library_app:index' %}">Comics</a></li>
+      </ul>
+    </div>
+  </div>
 </div>

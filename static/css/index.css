@@ -3,6 +3,10 @@
   font-family: 'Roboto Condensed', sans-serif;
 }
 
+body {
+  height: 100%;
+}
+
 /* comic book details */
 .detail {
   position: relative;

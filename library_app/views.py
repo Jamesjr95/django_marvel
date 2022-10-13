@@ -11,7 +11,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 
 #list view for all comic books
-def index(request, page_num=1, per_page=24):
+def index(request, page_num=1, per_page=12):
     page_num = request.GET.get('page_num') or page_num
     per_page = request.GET.get('per_page') or per_page
     books = Book.objects.all()
@@ -24,7 +24,7 @@ def index(request, page_num=1, per_page=24):
     return render(request, 'catalog/index.html', context)
 
 #list view for all characters
-def characters(request,  page_num=1, per_page=24):
+def characters(request,  page_num=1, per_page=12):
     page_num = request.GET.get('page_num') or page_num
     per_page = request.GET.get('per_page') or per_page
     characters = Character.objects.all()
