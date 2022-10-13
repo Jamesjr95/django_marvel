@@ -1,24 +1,21 @@
 {% extends 'base.html' %} {% block content %}
-<h1 class="text-center">Register</h1>
 
-<form
-  action="{% url 'users_app:register' %}"
-  method="POST"
-  class="d-flex flex-column align-items-center gap-3 justify-content-center"
->
+<form action="{% url 'users_app:register' %}" method="POST"
+  class="d-flex flex-column align-items-center justify-content-center my-auto" style="height: 75vh;">
+  <h1 class="text-center">Register</h1>
   <fieldset>
-    <label for="id_username">{{form.username.label}}</label>
+    <label for="id_username"></label>
     {{form.username}}
   </fieldset>
 
   <fieldset>
-    <label for="id_password">{{form.password.label}}</label>
+    <label for="id_password"></label>
     {{form.password}}
   </fieldset>
 
   {% csrf_token %}
 
-  <button type="submit" class="btn btn-success">Register</button>
+  <button type="submit" class="btn btn-danger mt-4">Register</button>
 </form>
 
 {% endblock content %}
