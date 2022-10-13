@@ -3,12 +3,8 @@ from django.db import models
 from django.contrib.auth import get_user_model
 import random
 
-# Create your models here.
-
-
 def get_upload_path(instance, filename):
     return f'images/avatars/{filename}'
-
 
 class Book(models.Model):
     title = models.CharField(max_length=50)

@@ -11,11 +11,11 @@
     </div>
 
     {% endif %}
-    <div class="row pt-3 text-center px-3 mx-3">
+    <div class="row text-center px-3 mx-3 row-cols-1 row-cols-md-3 row-cols-lg-5">
       {% for book in products_page %}
-      <div class="col mx-auto m-2 pt-2">
+      <div class="col mx-auto m-2 pt-1 p-1">
         <a href="{% url 'library_app:detail' book.id %}" class="link_container">
-          <img src="{{book.image_url}}" class="img_hover " title="{{book.title}}" alt="..." /></a>
+          <img src="{{book.image_url}}" class="img_hover" style="width: 14rem;" title="{{book.title}}" alt="..." /></a>
         <a class="text-decoration-none" href="{% url 'library_app:detail' book.id %}">
           <h5 class="text-dark book_title mt-2">{{book.title}}</h5>
         </a>
