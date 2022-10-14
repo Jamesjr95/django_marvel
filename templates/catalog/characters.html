@@ -1,15 +1,16 @@
 {% extends 'base.html' %}{% load static %} {% block content %}
-<div class="container-fluid d-flex justify-content-center m-5 p-4 min-vh-100">
-  <div class="row row-cols-1 row-cols-md-3 text-center">
+<div class="container mx-auto d-flex align-items-center justify-content-center m-5 p-4 min-vh-100">
+  <div class="row text-center">
     {% for char in products_page %}
-    <div class="col pt-2 hover_container">
+    <div class="col pt-2 hover_container m-4">
       <a href="{% url 'library_app:character' char.id %}" class="link_container">
-        <img src="{{char.image}}" class="img_hover" style="width: 15rem;" title="{{char.name}}" alt="..." /></a>
+        <img src="{{char.image}}" class="img_hover" style="width: 20rem;" title="{{char.name}}" alt="..." /></a>
       <a class="text-decoration-none" href="{% url 'library_app:character' char.id %}">
-        <h5 class="text-dark book_title mt-2">{{char.name}}</h5>
+        <h5 class="text-dark book_title mt-2 fs-3">{{char.name}}</h5>
       </a>
     </div>
     {% endfor %}
   </div>
 </div>
+{% include 'partials/paginator.html' %}
 {% endblock content %}

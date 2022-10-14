@@ -11,19 +11,20 @@
     </div>
 
     {% endif %}
-    
-    <div class="row text-center row-cols-1 row-cols-md-2 row-cols-lg-3">
+
+    <div class="row text-center m-5 justify-content-center">
       {% for book in products_page %}
-      <div class="col mx-auto m-2 pt-1 p-1">
+      <div class="col m-4">
         <a href="{% url 'library_app:detail' book.id %}" class="link_container">
-          <img src="{{book.image_url}}" class="img_hover" style="width: 13rem;" title="{{book.title}}" alt="..." /></a>
+          <img src="{{book.image_url}}" class="img_hover" style="width: 19rem;" title="{{book.title}}" alt="..." /></a>
         <a class="text-decoration-none" href="{% url 'library_app:detail' book.id %}">
           <h5 class="text-dark book_title mt-2">{{book.title}}</h5>
         </a>
       </div>
       {% endfor %}
     </div>
-    {% include 'partials/paginator.html' %}
   </div>
+</div>
+{% include 'partials/paginator.html' %}
 
-  {% endblock content %}
+{% endblock content %}

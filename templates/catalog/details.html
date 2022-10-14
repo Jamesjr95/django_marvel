@@ -33,12 +33,12 @@
       <h3 class="align-items-end">{{books.date}}</h3>
     </div>
   </div>
-  <div class="row text-center">
+  <h3 class="text-danger pb-4 border-top text-center fs-1">Characters in this comic</h3>
+  <div class="row text-center row-cols-1 row-cols-md-3 justify-content-center">
     {% if books.characters.all %}
 
-    <h3 class="text-primary pb-4 border-top">Characters in this comic</h3>
     {% for character in books.characters.all %}
-    <div class="col-lg-2 mb-5 col-md-3 col-sm-5 link_container">
+    <div class="col mb-5 link_container">
       <a href="{% url 'library_app:character' character.id %}"><img src="{{character.image}}" class="" alt="..." /></a>
       <h5 class="">{{character.name}}</h5>
     </div>
