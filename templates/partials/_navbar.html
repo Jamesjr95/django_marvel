@@ -20,24 +20,10 @@
   {% endif %}
   {% if not request.user.is_authenticated %}
   <div class="text-end">
-    <button class="btn btn-outline-light me-2"><a class="text-decoration-none text-dark"
+    <button class="btn btn-dark me-2"><a class="text-decoration-none text-light"
         href="{% url 'users_app:login' %}">Login</a></button>
     <button class="btn btn-warning"><a class="text-decoration-none text-dark"
         href="{% url 'users_app:register' %}">Register</a></button>
   </div>
   {% endif %}
-</div>
-<div class="row justify-content-end text-center">
-  <div class="col-4">
-    <div class="dropdown mr-5">
-      <button class="btn shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        <img src="/static/images/icons8-slider-48.png" alt="">
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <li><a class="dropdown-item" href="{% url 'library_app:characters' %}">Characters</a></li>
-        <li><a class="dropdown-item" href="{% url 'library_app:index' %}">Comics</a></li>
-      </ul>
-    </div>
-  </div>
 </div>

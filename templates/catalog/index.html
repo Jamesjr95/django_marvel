@@ -1,4 +1,18 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+<div class="row justify-content-end text-center">
+  <div class="col-4">
+    <div class="dropdown mr-5">
+      <button class="btn shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        aria-expanded="false">
+        <img src="/static/images/icons8-slider-48.png" alt="">
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item" href="{% url 'library_app:characters' %}">Characters</a></li>
+        <li><a class="dropdown-item" href="{% url 'library_app:index' %}">Comics</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div class="container-fluid min-vh-100 p-0 m-0">
   {% if messages %}
   <div class="row text-center justify-content-center pt-4">
