@@ -14,13 +14,18 @@ from django.core.paginator import Paginator
 def index(request, page_num=1, per_page=12):
     page_num = request.GET.get('page_num') or page_num
     per_page = request.GET.get('per_page') or per_page
-    books = Book.objects.all()
+    # books = Book.objects.all()
+    books = Book.objects.all().prefetch_related('characters')
+    
     books = books.order_by('-date')
+    
+    
     products_page = Paginator(books, per_page).get_page(page_num)
     context = {
         'products_page': products_page
 
     }
+    
     return render(request, 'catalog/index.html', context)
 
 #list view for all characters
