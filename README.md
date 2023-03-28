@@ -12,7 +12,7 @@
 * User log out
 
 * Checkout a comic book
-* Like a book
+* Like a comic book
 * Gallery of all comic books
 * Gallery of all characters
 * Detail pages for comic books
