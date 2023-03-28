@@ -1,6 +1,6 @@
 ## <p align='center'>Django Marvel</p>
 
-![image](https://user-images.githubusercontent.com/92341570/228389137-d2f9e786-349b-40c2-895d-cb9aa2a95bf6.png)
+![image](https://user-images.githubusercontent.com/92341570/228390234-fef8bafe-7644-4372-8d91-a9bcc8f59c9f.png)
 
 ### Technologies used
 
