@@ -6,6 +6,7 @@ Repo for PDX Code guild captstone
 ------
 
 Django Marvel is an app where you can view, checkout & like various Marvel comic books.
+![image](https://user-images.githubusercontent.com/92341570/228389137-d2f9e786-349b-40c2-895d-cb9aa2a95bf6.png)
 
 ### Technologies used
 
